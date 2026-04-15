@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtg567rrxi280"]
+
+[ext_resource type="Script" uid="uid://e1irab0vxufk" path="res://scripts/GameManager.cs" id="1_v5lfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5lfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vc0l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l3g4b"]
+
+[node name="Main" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Battlefield" type="Node2D" parent="."]
+
+[node name="BaseJugador" type="Area2D" parent="Battlefield"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseJugador"]
+shape = SubResource("RectangleShape2D_l3g4b")
+
+[node name="Marker2D" type="Marker2D" parent="Battlefield/BaseJugador"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/BaseJugador"]
+texture = SubResource("PlaceholderTexture2D_v5lfy")
+
+[node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]
+shape = SubResource("RectangleShape2D_7vc0l")
+
+[node name="Marker2D" type="Marker2D" parent="Battlefield/BaseEnemigo"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/BaseEnemigo"]
+texture = SubResource("PlaceholderTexture2D_l3g4b")
+
+[node name="UnitsContainer" type="Node2D" parent="Battlefield"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Botones" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Energia" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_v5lfy")
