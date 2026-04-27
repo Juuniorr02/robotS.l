@@ -1,8 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://sndo2fbpscsm"]
+[gd_scene load_steps=21 format=3 uid="uid://sndo2fbpscsm"]
 
 [ext_resource type="Script" uid="uid://dflqatujxh2tf" path="res://scripts/robots/RobotLigero.cs" id="1_jrcbu"]
+[ext_resource type="Texture2D" uid="uid://dm2vfc0axrpsu" path="res://assets/enemigos/ligero/fotograma0000.png" id="2_7tf0c"]
+[ext_resource type="Texture2D" uid="uid://bc1yvvfnqfv67" path="res://assets/enemigos/ligero/fotograma0001.png" id="3_epenc"]
+[ext_resource type="Texture2D" uid="uid://erlchwkut6qw" path="res://assets/enemigos/ligero/fotograma0002.png" id="4_qeoew"]
+[ext_resource type="Texture2D" uid="uid://bhxf2nsdd267x" path="res://assets/enemigos/ligero/fotograma0003.png" id="5_kkhtc"]
+[ext_resource type="Texture2D" uid="uid://wnh54vbs0dl6" path="res://assets/enemigos/ligero/fotograma0004.png" id="6_vyoib"]
+[ext_resource type="Texture2D" uid="uid://qx5g4axj5q7d" path="res://assets/enemigos/ligero/fotograma0005.png" id="7_f48u5"]
+[ext_resource type="Texture2D" uid="uid://cseoj5omltyma" path="res://assets/enemigos/ligero/fotograma0006.png" id="8_fti76"]
+[ext_resource type="Texture2D" uid="uid://bdcchgtqngmri" path="res://assets/enemigos/ligero/fotograma0007.png" id="9_qlgx4"]
+[ext_resource type="Texture2D" uid="uid://bgjyi1wqxkdqv" path="res://assets/enemigos/ligero/fotograma0008.png" id="10_dr35d"]
+[ext_resource type="Texture2D" uid="uid://yinrdncmppr8" path="res://assets/enemigos/ligero/fotograma0009.png" id="11_1jk57"]
+[ext_resource type="Texture2D" uid="uid://tuc8r8x5mbke" path="res://assets/enemigos/ligero/fotograma0010.png" id="12_lljuu"]
+[ext_resource type="Texture2D" uid="uid://ditv6jhmvlmqf" path="res://assets/enemigos/ligero/fotograma0011.png" id="13_3wa5i"]
+[ext_resource type="Texture2D" uid="uid://bwif1607he71g" path="res://assets/enemigos/ligero/fotograma0012.png" id="14_l25o1"]
+[ext_resource type="Texture2D" uid="uid://dot3apvhs5q7x" path="res://assets/enemigos/ligero/fotograma0013.png" id="15_d3fad"]
+[ext_resource type="Texture2D" uid="uid://k40yf4vy3to8" path="res://assets/enemigos/ligero/fotograma0014.png" id="16_qciul"]
+[ext_resource type="Texture2D" uid="uid://rg7icyjh7agq" path="res://assets/enemigos/ligero/fotograma0015.png" id="17_4sfkc"]
+[ext_resource type="Texture2D" uid="uid://drd5gcl8xemgs" path="res://assets/enemigos/ligero/fotograma0016.png" id="18_jqysl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7tf0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_epenc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qeoew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kkhtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vyoib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f48u5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fti76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qlgx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dr35d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1jk57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_lljuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3wa5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_l25o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_d3fad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qciul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4sfkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jqysl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 22.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
@@ -13,7 +87,9 @@ script = ExtResource("1_jrcbu")
 Nombre = "Robot Ligero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_jrcbu")
+frame_progress = 0.51505905
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jrcbu")
