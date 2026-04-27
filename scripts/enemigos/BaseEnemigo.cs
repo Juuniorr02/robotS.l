@@ -1,75 +1,96 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameConstants;
-using System.Collections.Generic;
 
 public partial class BaseEnemigo : Node2D
 {
-    [Export] public PackedScene EscenaLigero, EscenaTanque, EscenaPenetrador, EscenaArtillero;
-	
-    
-    // Economía de la IA
-    private float _energiaEnemiga = 0;
-    [Export] public float VelocidadCargaEnergia = 10f;
+    // Referencia al script modular de Spawn
+    private Spawner _spawner;
+    private Node _unitsContainer;
 
-    // Costes de cada unidad
+    // Economía interna de la IA (Espejo del jugador)
+    private float _energiaIA = 0;
+    private float _energiaPorSegundoBase = 10f;
+    private int _nivelEconomia = 0;
+    private const int MaxNivelEconomia = 4;
+
+    // Diccionario de costes (Idénticos a los del jugador)
     private readonly Dictionary<TipoTropa, int> _costes = new() {
         { TipoTropa.Ligero, 50 },
         { TipoTropa.Tanque, 150 },
         { TipoTropa.Penetrador, 100 },
-        { TipoTropa.Artillero, 120 }
+        { TipoTropa.Artillero, 200 }
     };
 
-    private Node _unitsContainer;
-
-    public override void _Ready() => _unitsContainer = GetParent().GetNode("UnitsContainer");
+    public override void _Ready()
+    {
+        // Buscamos el spawner que creamos antes (ajusta el nombre si es diferente)
+        _spawner = GetNode<Spawner>("SpawnerEnemigo"); 
+        _unitsContainer = GetParent().GetNode("UnitsContainer");
+    }
 
     public override void _Process(double delta)
     {
-        _energiaEnemiga += VelocidadCargaEnergia * (float)delta;
-        IntentarReaccionar();
+        // 1. Generar energía según el nivel de economía
+        float multiplicador = 1.0f + (_nivelEconomia * 0.5f);
+        _energiaIA += _energiaPorSegundoBase * multiplicador * (float)delta;
+
+        // 2. Ejecutar la lógica de decisión
+        PensarJugada();
     }
 
-    private void IntentarReaccionar()
+    private void PensarJugada()
     {
-        // 1. Analizar la amenaza más cercana a la base enemiga
-        TipoTropa? amenaza = DetectarAmenazaPrincipal();
+        Robot amenaza = DetectarAmenazaMasCercana();
 
-        if (amenaza.HasValue)
+        if (amenaza != null)
         {
-            // 2. Elegir el "counter" ideal
-            TipoTropa respuesta = ObtenerCounter(amenaza.Value);
-
-            // 3. Si hay dinero, spawnear
-            if (_energiaEnemiga >= _costes[respuesta])
+            // --- CASO A: HAY ENEMIGOS ---
+            TipoTropa respuesta = ObtenerCounterIdeal(amenaza.Tipo);
+            
+            if (_energiaIA >= _costes[respuesta])
             {
-                Spawnear(respuesta);
-                _energiaEnemiga -= _costes[respuesta];
+                _energiaIA -= _costes[respuesta];
+                _spawner.Spawn(respuesta);
             }
         }
-        else if (_energiaEnemiga >= 200) // Si no hay amenazas, spawnear algo básico para presionar
+        else 
         {
-            Spawnear(TipoTropa.Ligero);
-            _energiaEnemiga -= _costes[TipoTropa.Ligero];
+            // --- CASO B: EL CAMPO ESTÁ LIBRE ---
+            int costeMejora = 100 + (_nivelEconomia * 100);
+
+            // Si puede mejorar la economía, lo hace primero
+            if (_nivelEconomia < MaxNivelEconomia && _energiaIA >= costeMejora)
+            {
+                _energiaIA -= costeMejora;
+                _nivelEconomia++;
+                GD.Print($"[IA] Economía mejorada a Nivel {_nivelEconomia}");
+            }
+            // Si ya está mejorado o tiene energía de sobra, presiona con tropas ligeras
+            else if (_energiaIA >= 250)
+            {
+                _energiaIA -= _costes[TipoTropa.Ligero];
+                _spawner.Spawn(TipoTropa.Ligero);
+            }
         }
     }
 
-    private TipoTropa? DetectarAmenazaPrincipal()
+    private Robot DetectarAmenazaMasCercana()
     {
-        // Buscamos en el UnitsContainer tropas que pertenezcan al jugador
-        // Asumiendo que tus tropas tienen una propiedad 'EsDelJugador' y 'Tipo'
-        var tropasJugador = _unitsContainer.GetChildren()
-            .OfType<Robot>() // Clase base de tus tropas
-            .Where(t => t.EsDelJugador)
-            .OrderBy(t => t.GlobalPosition.DistanceTo(this.GlobalPosition));
-
-        return tropasJugador.FirstOrDefault()?.Tipo;
+        // Busca robots en el contenedor que sean del jugador
+        return _unitsContainer.GetChildren()
+            .OfType<Robot>()
+            .Where(r => r.EsDelJugador)
+            .OrderBy(r => r.GlobalPosition.DistanceTo(this.GlobalPosition))
+            .FirstOrDefault();
     }
 
-    private TipoTropa ObtenerCounter(TipoTropa amenaza)
+    private TipoTropa ObtenerCounterIdeal(TipoTropa tipoAmenaza)
     {
-        return amenaza switch
+        // Sistema de debilidades definido por ti
+        return tipoAmenaza switch
         {
             TipoTropa.Artillero => TipoTropa.Ligero,     // Ligero gana a Artillero
             TipoTropa.Penetrador => TipoTropa.Artillero, // Artillero gana a Penetrador
@@ -77,19 +98,5 @@ public partial class BaseEnemigo : Node2D
             TipoTropa.Ligero => TipoTropa.Tanque,        // Tanque gana a Ligero
             _ => TipoTropa.Ligero
         };
-    }
-
-    private void Spawnear(TipoTropa tipo)
-    {
-        PackedScene escena = tipo switch {
-            TipoTropa.Ligero => EscenaLigero,
-            TipoTropa.Tanque => EscenaTanque,
-            TipoTropa.Penetrador => EscenaPenetrador,
-            _ => EscenaArtillero
-        };
-
-        var instancia = escena.Instantiate<Robot>();
-        _unitsContainer.AddChild(instancia);
-        instancia.GlobalPosition = GetNode<Marker2D>("Marker2D").GlobalPosition;
     }
 }

@@ -60,10 +60,12 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
-[node name="RobotPenetrador" type="CharacterBody2D"]
+[node name="RobotPenetrador" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_jl2es")
+Tipo = 2
+Visual = NodePath("AnimatedSprite2D")
 Nombre = "Robot Penetrador"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

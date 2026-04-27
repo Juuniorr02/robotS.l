@@ -80,14 +80,16 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
-[node name="RobotLigero" type="CharacterBody2D"]
+[node name="RobotLigero" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_jrcbu")
+Visual = NodePath("AnimatedSprite2D")
 Nombre = "Robot Ligero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 frame_progress = 0.51505905
 
