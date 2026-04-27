@@ -32,7 +32,7 @@ position = Vector2(117, 461)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseJugador"]
 shape = SubResource("RectangleShape2D_l3g4b")
 
-[node name="Marker2D" type="Marker2D" parent="Battlefield/BaseJugador"]
+[node name="SpawnerJugador" type="Marker2D" parent="Battlefield/BaseJugador"]
 position = Vector2(20, 6)
 script = ExtResource("1_o0cuc")
 EscenaLigero = ExtResource("3_1k7bg")

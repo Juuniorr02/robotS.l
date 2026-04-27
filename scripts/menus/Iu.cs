@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GameConstants; // Asegúrate de tener este namespace para TipoTropa
 
 public partial class Iu : Control
 {
@@ -10,6 +11,9 @@ public partial class Iu : Control
     public TextureButton Penetrador;
     public TextureButton Tanque;
     public TextureButton Artillero;
+
+    // --- NUEVA VARIABLE ---
+    [Export] private Spawner _spawnerJugador; 
 
     private int contador = 0;
 
@@ -25,6 +29,12 @@ public partial class Iu : Control
         Tanque = GetNodeOrNull<TextureButton>("%Tanque");
         Artillero = GetNodeOrNull<TextureButton>("%Artillero");
 
+        // --- CONEXIÓN DE BOTONES DE TROPAS ---
+        if (Ligero != null) Ligero.Pressed += () => OnTropaButtonPressed(TipoTropa.Ligero, 50);
+        if (Penetrador != null) Penetrador.Pressed += () => OnTropaButtonPressed(TipoTropa.Penetrador, 100);
+        if (Tanque != null) Tanque.Pressed += () => OnTropaButtonPressed(TipoTropa.Tanque, 150);
+        if (Artillero != null) Artillero.Pressed += () => OnTropaButtonPressed(TipoTropa.Artillero, 200);
+
         MejorarButton.Text = $"Mejorar: ({100} energia)";
 
         ConfigurarBoton(Ligero);
@@ -37,11 +47,32 @@ public partial class Iu : Control
 
         ActualizarIUCadaSegundo();
     }
+
+    // --- NUEVA FUNCIÓN PARA SPAWNEAR ---
+    private void OnTropaButtonPressed(TipoTropa tipo, int coste)
+    {
+        if (Recursos.Instance.Energia >= coste)
+        {
+            if (_spawnerJugador != null)
+            {
+                Recursos.Instance.Energia -= coste;
+                _spawnerJugador.Spawn(tipo);
+                UpdateIU(); // Actualiza el texto inmediatamente
+            }
+            else
+            {
+                GD.PrintErr("Error: No has asignado el SpawnerJugador en el Inspector de la IU");
+            }
+        }
+        else
+        {
+            GD.Print("Energía insuficiente para " + tipo);
+        }
+    }
     
     private void ConfigurarBoton(TextureButton b)
     {
         if (b == null) return;
-
         b.ProcessMode = ProcessModeEnum.Pausable;
         b.MouseFilter = MouseFilterEnum.Stop;
     }
@@ -58,52 +89,28 @@ public partial class Iu : Control
     private void UpdateIU()
     {
         Recursos.Instance.SubidaEnergia();
-        EnergiaLabel.Text = $"Energia: {Recursos.Instance.Energia}";
+        EnergiaLabel.Text = $"Energia: {(int)Recursos.Instance.Energia}";
     }
 
     private void OnMejorarButtonPressed()
     {
-        int coste = 100;
+        // ... (Tu código de OnMejorarButtonPressed se mantiene igual) ...
+        int coste = 100 + (contador * 100);
 
-        if (contador == 0 && Recursos.Instance.Energia >= 100)
+        if (contador < 4 && Recursos.Instance.Energia >= coste)
         {
-            coste = 200;
-            MejorarButton.Text = $"Mejorar: ({coste} energia)";
-            Recursos.Instance.Energia -= 100;
+            Recursos.Instance.Energia -= coste;
             Recursos.Instance.MejorarEnergia();
-            UpdateIU();
             contador++;
-        }
-        else if (contador == 1 && Recursos.Instance.Energia >= 200)
-        {
-            coste = 300;
-            MejorarButton.Text = $"Mejorar: ({coste} energia)";
-            Recursos.Instance.Energia -= 200;
-            Recursos.Instance.MejorarEnergia();
+            
+            if (contador < 4)
+                MejorarButton.Text = $"Mejorar: ({coste + 100} energia)";
+            else
+            {
+                MejorarButton.Text = $"Mejorar: (MAX)";
+                MejorarButton.Disabled = true;
+            }
             UpdateIU();
-            contador++;
-        }
-        else if (contador == 2 && Recursos.Instance.Energia >= 300)
-        {
-            coste = 400;
-            MejorarButton.Text = $"Mejorar: ({coste} energia)";
-            Recursos.Instance.Energia -= 300;
-            Recursos.Instance.MejorarEnergia();
-            UpdateIU();
-            contador++;
-        }
-
-        else if (contador == 3 && Recursos.Instance.Energia >= 400)
-        {
-            Recursos.Instance.Energia -= 400;
-            Recursos.Instance.MejorarEnergia();
-            UpdateIU();
-            contador++;
-        }
-        else if (contador == 4)
-        {
-            MejorarButton.Text = $"Mejorar: (MAX)";
-            MejorarButton.Disabled = true;
         }
     }
 }
