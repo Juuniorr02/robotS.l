@@ -6,6 +6,8 @@ public partial class Iu : Control
 {
     private Button MejorarButton;
     private Label EnergiaLabel;
+    private Label VidaEnemigoLabel;
+    private Label HealthLabel;
 
     public TextureButton Ligero;
     public TextureButton Penetrador;
@@ -23,6 +25,8 @@ public partial class Iu : Control
         
         MejorarButton = GetNode<Button>("%MejorarButton");
         EnergiaLabel = GetNode<Label>("%EnergiaLabel");
+        VidaEnemigoLabel = GetNode<Label>("%VidaEnemigoLabel");
+        HealthLabel = GetNode<Label>("%HealthLabel");
 
         Ligero = GetNodeOrNull<TextureButton>("%Ligero");
         Penetrador = GetNodeOrNull<TextureButton>("%Penetrador");
@@ -90,6 +94,8 @@ public partial class Iu : Control
     {
         Recursos.Instance.SubidaEnergia();
         EnergiaLabel.Text = $"Energia: {(int)Recursos.Instance.Energia}";
+        HealthLabel.Text = $"Vida: {(int)Recursos.Instance.Health}";
+        VidaEnemigoLabel.Text = $"Vida Enemigo: {(int)Recursos.Instance.VidaEnemigo}";
     }
 
     private void OnMejorarButtonPressed()

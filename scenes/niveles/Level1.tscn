@@ -66,6 +66,7 @@ texture = SubResource("PlaceholderTexture2D_l3g4b")
 
 [node name="UnitsContainer" type="Node2D" parent="Battlefield"]
 
-[node name="IU" parent="Battlefield" instance=ExtResource("2_7vc0l")]
+[node name="IU" parent="Battlefield" node_paths=PackedStringArray("_spawnerJugador") instance=ExtResource("2_7vc0l")]
+_spawnerJugador = NodePath("../BaseJugador/SpawnerJugador")
 
 [node name="menu_pausa" parent="." instance=ExtResource("3_7vc0l")]
