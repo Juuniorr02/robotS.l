@@ -48,7 +48,8 @@ size_flags_horizontal = 3
 [node name="Stats" type="PanelContainer" parent="IU/IU/IU/Top/Stats/Stats"]
 self_modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
 [node name="Stats" type="MarginContainer" parent="IU/IU/IU/Top/Stats/Stats/Stats"]
 layout_mode = 2
