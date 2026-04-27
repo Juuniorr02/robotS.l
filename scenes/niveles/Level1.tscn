@@ -24,8 +24,9 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(289, 429)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("1_1k7bg")
+LimiteDerecho = 1150.0
 
 [node name="Battlefield" type="Node2D" parent="."]
 
