@@ -6,10 +6,12 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
-[node name="RobotTanque" type="CharacterBody2D"]
+[node name="RobotTanque" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_v6bhk")
+Tipo = 1
+Visual = NodePath("AnimatedSprite2D")
 Nombre = "Robot Tanque"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
