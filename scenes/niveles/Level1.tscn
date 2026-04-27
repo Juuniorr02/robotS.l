@@ -35,10 +35,10 @@ texture = SubResource("PlaceholderTexture2D_v5lfy")
 
 [node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
 script = ExtResource("1_kbnhg")
-TropaLigera = ExtResource("2_7pmre")
-TropaTanque = ExtResource("3_o0cuc")
-TropaPenetrador = ExtResource("4_1k7bg")
-TropaArtillero = ExtResource("5_gu6vx")
+EscenaLigero = ExtResource("2_7pmre")
+EscenaTanque = ExtResource("3_o0cuc")
+EscenaPenetrador = ExtResource("4_1k7bg")
+EscenaArtillero = ExtResource("5_gu6vx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]
 shape = SubResource("RectangleShape2D_7vc0l")
@@ -64,3 +64,7 @@ offset_bottom = 23.0
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_v5lfy")
+RobotLigeroScene = ExtResource("2_7pmre")
+RobotTanqueScene = ExtResource("3_o0cuc")
+RobotPenetradorScene = ExtResource("4_1k7bg")
+RobotArtilleroScene = ExtResource("5_gu6vx")
