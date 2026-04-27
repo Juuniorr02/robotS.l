@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6o5datpm682p"]
+
+[ext_resource type="Script" uid="uid://ck7o6ah3nsvvh" path="res://scripts/ui/MenuVictoria.cs" id="1_di162"]
+
+[node name="menu_victoria" type="CanvasLayer"]
+script = ExtResource("1_di162")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="imagen" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="victoria" type="TextureRect" parent="PanelContainer/VBoxContainer/imagen"]
+layout_mode = 2
+
+[node name="botones" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="siguiente" type="Button" parent="PanelContainer/VBoxContainer/botones"]
+layout_mode = 2
+text = "Siguiente"
+
+[node name="reiniciar" type="Button" parent="PanelContainer/VBoxContainer/botones"]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="volver" type="Button" parent="PanelContainer/VBoxContainer/botones"]
+z_index = 10
+texture_filter = 1
+layout_mode = 2
+action_mode = 0
+text = "Salir del nivel"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Overlay" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.29803923, 0.29803923, 0.29803923, 0.5882353)

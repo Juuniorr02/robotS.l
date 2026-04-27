@@ -60,12 +60,12 @@ public partial class MenuController : Node
     public void OnNewGame()
     {
         Recursos.Instance.ReiniciarEnergia();
-        GetTree().ChangeSceneToFile("res://scenes/level/level1.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/niveles/level1.tscn");
     }
 
     public void OnOptions()
     {
-        GetTree().ChangeSceneToFile("res://scenes/ui/menus/options.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/menus/options.tscn");
     }
 
     public void OnQuit()

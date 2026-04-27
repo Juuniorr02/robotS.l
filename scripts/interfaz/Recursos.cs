@@ -7,6 +7,7 @@ public partial class Recursos : Node
 
 	public int Energia = 0;
 	public int EnergiaMejorada = 0;
+	public int Health = 100;
 
 	public override void _Ready()
 	{
@@ -17,7 +18,7 @@ public partial class Recursos : Node
 	private async void SubidaEnergia()
 	{
 		SumarEnergia();
-		await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
+		await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
 	}
 
 	public void SumarEnergia()
@@ -34,6 +35,7 @@ public partial class Recursos : Node
 	{
 		Energia = 0;
 		EnergiaMejorada = 0;
+		Health = 100;
 	}
 
 	/** Ligero --> Artillero

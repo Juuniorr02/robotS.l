@@ -1,0 +1,353 @@
+[gd_scene load_steps=2 format=3 uid="uid://2rcsu6vtn2kt"]
+
+[ext_resource type="Script" uid="uid://cbk1qr1frh3i6" path="res://scripts/menus/OptionsController.cs" id="1_71qnv"]
+
+[node name="OptionsController" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_71qnv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+z_index = -1
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Resolucion" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Resolucion" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Resolucion"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Resolucion/Resolucion"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+text = "Pantalla"
+
+[node name="Resolucion" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Resolucion/Resolucion"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Resolucion" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Resolucion/Resolucion/Resolucion"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Resolución"
+
+[node name="ResolucionOption" type="OptionButton" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Resolucion/Resolucion/Resolucion"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Modo" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Modo" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Modo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Modo/Modo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Modo" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Modo/Modo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Modo" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Modo/Modo/Modo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Modo"
+
+[node name="ModoOption" type="OptionButton" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Modo/Modo/Modo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Calidad" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Calidad" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Calidad"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Calidad/Calidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Calidad" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Calidad/Calidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Calidad" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Calidad/Calidad/Calidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Calidad"
+
+[node name="CalidadOption" type="OptionButton" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Calidad/Calidad/Calidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Espacio1" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Volumen" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Volumen" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Volumen"]
+layout_mode = 2
+
+[node name="Sonido" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Volumen/Volumen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+text = "Sonido"
+
+[node name="Volumen" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Volumen/Volumen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Volumen" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Volumen/Volumen/Volumen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Volumen"
+
+[node name="VolumenOption" type="HSlider" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Volumen/Volumen/Volumen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.4
+value = 100.0
+
+[node name="SFX" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SFX" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/SFX"]
+layout_mode = 2
+
+[node name="Sonido" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/SFX/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="SFX" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/SFX/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SFX" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/SFX/SFX/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "SFX"
+
+[node name="SFXOption" type="HSlider" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/SFX/SFX/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.4
+value = 100.0
+
+[node name="Musica" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Musica" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Musica"]
+layout_mode = 2
+
+[node name="Sonido" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Musica/Musica"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Musica" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Musica/Musica"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Musica" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Musica/Musica/Musica"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Mùsica"
+
+[node name="MusicaOption" type="HSlider" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Musica/Musica/Musica"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.4
+value = 100.0
+
+[node name="Espacio2" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Sensibilidad" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sensibilidad" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Sensibilidad"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Sensibilidad/Sensibilidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+text = "Camara"
+
+[node name="Sensibilidad" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Sensibilidad/Sensibilidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sensibilidad" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Sensibilidad/Sensibilidad/Sensibilidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Sensibilidad"
+
+[node name="SensibilidadOption" type="SpinBox" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Sensibilidad/Sensibilidad/Sensibilidad"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.4
+min_value = 1.0
+max_value = 10.0
+step = 0.1
+value = 5.0
+
+[node name="InvertirY" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="InvertirY" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/InvertirY"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/InvertirY/InvertirY"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="InvertirY" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/InvertirY/InvertirY"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InvertirY" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/InvertirY/InvertirY/InvertirY"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Invertir Y"
+
+[node name="InventirYOption" type="CheckBox" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/InvertirY/InvertirY/InvertirY"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.4
+
+[node name="Espacio3" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Botones" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Botones" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Botones"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 60
+
+[node name="Aplicar" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Botones/Botones"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+text = "Aplicar cambios"
+
+[node name="Salir" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Botones/Botones"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Guardar y salir"
+
+[node name="Volver" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/VBoxContainer/Botones/Botones"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Volver"
