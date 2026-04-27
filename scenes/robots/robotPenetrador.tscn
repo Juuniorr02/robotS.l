@@ -70,6 +70,8 @@ Nombre = "Robot Penetrador"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-3.9999998, -28.999998)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 frame_progress = 0.35206023
 
