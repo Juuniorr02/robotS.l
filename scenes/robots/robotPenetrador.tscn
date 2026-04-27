@@ -1,8 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyerjirl457jh"]
+[gd_scene load_steps=16 format=3 uid="uid://dyerjirl457jh"]
 
 [ext_resource type="Script" uid="uid://hie85103fywx" path="res://scripts/robots/RobotPenetrador.cs" id="1_jl2es"]
+[ext_resource type="Texture2D" uid="uid://b2ebeuq8ho42l" path="res://assets/enemigos/penetrador/fotograma0000.png" id="2_6t67n"]
+[ext_resource type="Texture2D" uid="uid://cssjm6p8qonid" path="res://assets/enemigos/penetrador/fotograma0001.png" id="3_8t1vh"]
+[ext_resource type="Texture2D" uid="uid://de70j5fba76mb" path="res://assets/enemigos/penetrador/fotograma0002.png" id="4_023lj"]
+[ext_resource type="Texture2D" uid="uid://drx06hfnw02y4" path="res://assets/enemigos/penetrador/fotograma0003.png" id="5_cba46"]
+[ext_resource type="Texture2D" uid="uid://bi7f868bd5u7j" path="res://assets/enemigos/penetrador/fotograma0004.png" id="6_uv2rr"]
+[ext_resource type="Texture2D" uid="uid://6nrylwgb17hu" path="res://assets/enemigos/penetrador/fotograma0005.png" id="7_dynkh"]
+[ext_resource type="Texture2D" uid="uid://su282ls2cmi0" path="res://assets/enemigos/penetrador/fotograma0006.png" id="8_8k24g"]
+[ext_resource type="Texture2D" uid="uid://bhna5xtmyumv" path="res://assets/enemigos/penetrador/fotograma0007.png" id="9_m6q02"]
+[ext_resource type="Texture2D" uid="uid://d3a7u3oce67jh" path="res://assets/enemigos/penetrador/fotograma0008.png" id="10_olc4p"]
+[ext_resource type="Texture2D" uid="uid://dj7assahga3rt" path="res://assets/enemigos/penetrador/fotograma0009.png" id="11_q0yvx"]
+[ext_resource type="Texture2D" uid="uid://bw1dfww6v4yal" path="res://assets/enemigos/penetrador/fotograma0010.png" id="12_78fu4"]
+[ext_resource type="Texture2D" uid="uid://c7sfurpxv3oln" path="res://assets/enemigos/penetrador/fotograma0011.png" id="13_1g5sk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6t67n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8t1vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_023lj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cba46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uv2rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dynkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8k24g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_m6q02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_olc4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q0yvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_78fu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1g5sk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 22.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
@@ -13,7 +67,9 @@ script = ExtResource("1_jl2es")
 Nombre = "Robot Penetrador"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_jrcbu")
+frame_progress = 0.35206023
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jrcbu")

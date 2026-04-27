@@ -32,6 +32,10 @@ texture = SubResource("PlaceholderTexture2D_v5lfy")
 
 [node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
 script = ExtResource("1_kbnhg")
+TropaLigera = ExtResource("2_7pmre")
+TropaTanque = ExtResource("3_o0cuc")
+TropaPenetrador = ExtResource("4_1k7bg")
+TropaArtillero = ExtResource("5_gu6vx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]
 shape = SubResource("RectangleShape2D_7vc0l")
