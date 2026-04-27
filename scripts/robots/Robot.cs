@@ -1,48 +1,57 @@
 using Godot;
 using System;
+using GameConstants; // Importante para usar el enum TipoTropa
 
-// Definimos la clase base
 public partial class Robot : CharacterBody2D
 {
-    // Variables que todos los robots comparten pero con valores distintos
+    // --- NUEVOS CAMPOS PARA LA IA ---
+    [Export] public TipoTropa Tipo; // Para que la IA sepa qué tipo es
+    [Export] public bool EsDelJugador = true; // Reemplazamos 'Equipo' por esto para claridad
+
+    // --- TUS VARIABLES ORIGINALES ---
     [Export] public string Nombre;
     [Export] public int Vida = 100;
     [Export] public float Velocidad = 50.0f;
     [Export] public int Danio = 10;
     [Export] public float RangoAtaque = 30.0f;
     
-    public int Equipo = 1; // 1: Jugador, -1: Enemigo
     protected bool EstaAtacando = false;
-
-    // Nodo para detectar enemigos (puedes usar un RayCast2D o Area2D)
     protected RayCast2D Detector;
 
     public override void _Ready()
     {
-        // Buscamos un RayCast2D que añadiremos a la escena del robot
         Detector = GetNode<RayCast2D>("RayCast2D");
-        // Orientamos el detector según el equipo
-        Detector.TargetPosition = new Vector2(RangoAtaque * Equipo, 0);
+        
+        // Ajustamos dirección: Jugador va a la derecha (+), Enemigo a la izquierda (-)
+        float direccion = EsDelJugador ? 1.0f : -1.0f;
+        Detector.TargetPosition = new Vector2(RangoAtaque * direccion, 0);
+        
+        // Opcional: Voltear el sprite si es enemigo
+        if (!EsDelJugador) {
+            GetNode<Sprite2D>("Sprite2D").FlipH = true;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Velocity;
+        float direccion = EsDelJugador ? 1.0f : -1.0f;
 
-        // Lógica de detección
         if (Detector.IsColliding())
         {
-            var objetivo = Detector.GetCollider();
-            // Aquí verificaremos si es un enemigo antes de atacar
-            EstaAtacando = true;
-            velocity.X = 0; 
-            // Iniciar animación de ataque aquí
+            // Verificamos si lo que golpea el RayCast es un enemigo
+            var objeto = Detector.GetCollider();
+            if (objeto is Robot otroRobot && otroRobot.EsDelJugador != this.EsDelJugador)
+            {
+                EstaAtacando = true;
+                velocity.X = 0;
+                // Aquí llamarías a tu función de ataque
+            }
         }
         else
         {
             EstaAtacando = false;
-            velocity.X = Velocidad * Equipo;
-            // Iniciar animación de caminar aquí
+            velocity.X = Velocidad * direccion;
         }
 
         Velocity = velocity;
@@ -55,9 +64,5 @@ public partial class Robot : CharacterBody2D
         if (Vida <= 0) Morir();
     }
 
-    protected void Morir()
-    {
-        // Aquí podrías poner efectos de explosión
-        QueueFree(); 
-    }
+    protected void Morir() => QueueFree();
 }
