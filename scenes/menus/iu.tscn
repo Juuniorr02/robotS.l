@@ -1,0 +1,275 @@
+[gd_scene load_steps=5 format=3 uid="uid://cptkelbeah0d6"]
+
+[ext_resource type="Script" uid="uid://bwjkwxm0tfcc5" path="res://scripts/menus/Iu.cs" id="1_w8q3a"]
+
+[sub_resource type="Theme" id="Theme_1nckr"]
+
+[sub_resource type="Theme" id="Theme_tyt0d"]
+
+[sub_resource type="Theme" id="Theme_pd0vv"]
+
+[node name="IU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w8q3a")
+
+[node name="IU" type="CanvasLayer" parent="."]
+
+[node name="IU" type="PanelContainer" parent="IU"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1nckr")
+
+[node name="IU" type="VBoxContainer" parent="IU/IU"]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="IU/IU/IU"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Stats" type="HBoxContainer" parent="IU/IU/IU/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Blank" type="VBoxContainer" parent="IU/IU/IU/Top/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Center" type="VBoxContainer" parent="IU/IU/IU/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Energia" type="VBoxContainer" parent="IU/IU/IU/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Energia" type="HBoxContainer" parent="IU/IU/IU/Top/Energia"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blank" type="HBoxContainer" parent="IU/IU/IU/Top/Energia/Energia"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Energia" type="VBoxContainer" parent="IU/IU/IU/Top/Energia/Energia"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EneriaLabel" type="Label" parent="IU/IU/IU/Top/Energia/Energia/Energia"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_tyt0d")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blank" type="HBoxContainer" parent="IU/IU/IU/Top/Energia"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bottom" type="HBoxContainer" parent="IU/IU/IU"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="VBoxContainer" parent="IU/IU/IU/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Towers" type="VBoxContainer" parent="IU/IU/IU/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Blank" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blank2" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Towers" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Towers" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Towers" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Towers" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers"]
+layout_mode = 2
+
+[node name="Ligero" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Ligero" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Ligero" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero"]
+layout_mode = 2
+
+[node name="Ligero" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero/Ligero"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Ligero" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero/Ligero/Ligero"]
+layout_mode = 2
+
+[node name="Ligero" type="TextureButton" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero/Ligero/Ligero/Ligero" groups=["botones_torres"]]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+
+[node name="Penetrador" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Penetrador" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Penetrador" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador"]
+layout_mode = 2
+
+[node name="Penetrador" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador/Penetrador"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Penetrador" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador/Penetrador/Penetrador"]
+layout_mode = 2
+
+[node name="Penetrador" type="TextureButton" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador/Penetrador/Penetrador/Penetrador" groups=["botones_torres"]]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Tanque" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tanque" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Tanque"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Tanque" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Tanque/Tanque"]
+layout_mode = 2
+
+[node name="Tanque" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Tanque/Tanque/Tanque"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Tanque" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Tanque/Tanque/Tanque/Tanque"]
+layout_mode = 2
+
+[node name="Tanque" type="TextureButton" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Tanque/Tanque/Tanque/Tanque/Tanque" groups=["botones_torres"]]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Artillero" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Artillero" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Artillero" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero/Artillero"]
+layout_mode = 2
+
+[node name="Artillero" type="MarginContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero/Artillero/Artillero"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Artillero" type="PanelContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero/Artillero/Artillero/Artillero"]
+layout_mode = 2
+
+[node name="Artillero" type="TextureButton" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero/Artillero/Artillero/Artillero/Artillero" groups=["botones_torres"]]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Right" type="VBoxContainer" parent="IU/IU/IU/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Blank" type="VBoxContainer" parent="IU/IU/IU/Bottom/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Mejorar" type="VBoxContainer" parent="IU/IU/IU/Bottom/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MejorarButton" type="Button" parent="IU/IU/IU/Bottom/Right/Mejorar" groups=["botones_torres"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_pd0vv")
+text = "Borrar"
+
+[connection signal="pressed" from="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero/Ligero/Ligero/Ligero/Ligero" to="." method="OnArcherPressed"]
+[connection signal="pressed" from="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador/Penetrador/Penetrador/Penetrador/Penetrador" to="." method="OnCannonPressed"]
+[connection signal="pressed" from="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Artillero/Artillero/Artillero/Artillero/Artillero/Artillero" to="." method="OnBallistaPressed"]
