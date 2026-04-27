@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=14 format=3 uid="uid://dtg567rrxi280"]
 
+[ext_resource type="Script" uid="uid://cjb2nb5olb80f" path="res://scripts/interfaz/Camara.cs" id="1_1k7bg"]
 [ext_resource type="Script" uid="uid://6x4koy7xn8jl" path="res://scripts/enemigos/BaseEnemigo.cs" id="1_kbnhg"]
 [ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="1_o0cuc"]
 [ext_resource type="PackedScene" uid="uid://cptkelbeah0d6" path="res://scenes/menus/iu.tscn" id="2_7vc0l"]
@@ -22,12 +23,14 @@
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(565, 337)
+position = Vector2(289, 429)
+zoom = Vector2(2, 2)
+script = ExtResource("1_1k7bg")
 
 [node name="Battlefield" type="Node2D" parent="."]
 
 [node name="BaseJugador" type="Area2D" parent="Battlefield"]
-position = Vector2(117, 461)
+position = Vector2(21, 464)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseJugador"]
 shape = SubResource("RectangleShape2D_l3g4b")
@@ -45,7 +48,7 @@ scale = Vector2(40, 40)
 texture = SubResource("PlaceholderTexture2D_v5lfy")
 
 [node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
-position = Vector2(1048, 453)
+position = Vector2(1121, 465)
 script = ExtResource("1_kbnhg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]

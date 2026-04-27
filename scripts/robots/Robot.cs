@@ -4,14 +4,10 @@ using GameConstants;
 
 public partial class Robot : CharacterBody2D
 {
-    // --- REFERENCIAS Y CONFIGURACIÓN ---
     [Export] public TipoTropa Tipo;
     [Export] public bool EsDelJugador = true;
-    
-    // Arrastra aquí tu AnimatedSprite2D desde el inspector
     [Export] public Node2D Visual; 
 
-    // --- ESTADÍSTICAS ---
     [Export] public string Nombre;
     [Export] public int Vida = 100;
     [Export] public float Velocidad = 50.0f;
@@ -23,24 +19,23 @@ public partial class Robot : CharacterBody2D
 
     public override void _Ready()
     {
-        // 1. Configurar el RayCast2D
         Detector = GetNode<RayCast2D>("RayCast2D");
         
-        // El jugador mira a la derecha (1), el enemigo a la izquierda (-1)
         float direccion = EsDelJugador ? 1.0f : -1.0f;
         Detector.TargetPosition = new Vector2(RangoAtaque * direccion, 0);
         
-        // 2. Volteo Visual Seguro
-        if (!EsDelJugador && Visual != null)
+        if (Visual != null)
         {
-            // Volteamos el nodo visual completo multiplicando la escala X por -1
             Vector2 nuevaEscala = Visual.Scale;
-            nuevaEscala.X *= -1;
+            
+            // --- CAMBIO AQUÍ ---
+            // Invertimos la lógica: Si tus sprites originales miran a la izquierda,
+            // el jugador (que va a la derecha) necesita escala negativa (-1) 
+            // y el enemigo (que va a la izquierda) necesita escala positiva (1).
+            float orientacion = EsDelJugador ? -1.0f : 1.0f; 
+            
+            nuevaEscala.X = Mathf.Abs(nuevaEscala.X) * orientacion;
             Visual.Scale = nuevaEscala;
-        }
-        else if (Visual == null)
-        {
-            GD.PrintErr($"¡OJO! No has asignado el nodo Visual en el robot: {Name}");
         }
     }
 
@@ -52,17 +47,14 @@ public partial class Robot : CharacterBody2D
         if (Detector.IsColliding())
         {
             var objeto = Detector.GetCollider();
-            
-            // Verificamos si es un Robot y si es del equipo contrario
             if (objeto is Robot otroRobot && otroRobot.EsDelJugador != this.EsDelJugador)
             {
                 EstaAtacando = true;
                 velocity.X = 0;
-                // Aquí podrías llamar a una función EjecutarAtaque()
+                // Aquí podrías poner: if (Visual is AnimatedSprite2D anim) anim.Play("ataque");
             }
             else
             {
-                // Si choca con un aliado o algo que no es un robot enemigo, sigue caminando
                 EstaAtacando = false;
                 velocity.X = Velocidad * direccion;
             }
@@ -71,6 +63,7 @@ public partial class Robot : CharacterBody2D
         {
             EstaAtacando = false;
             velocity.X = Velocidad * direccion;
+            // Aquí podrías poner: if (Visual is AnimatedSprite2D anim) anim.Play("caminar");
         }
 
         Velocity = velocity;
@@ -83,8 +76,5 @@ public partial class Robot : CharacterBody2D
         if (Vida <= 0) Morir();
     }
 
-    protected void Morir()
-    {
-        QueueFree();
-    }
+    protected void Morir() => QueueFree();
 }
