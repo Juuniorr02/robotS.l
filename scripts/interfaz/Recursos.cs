@@ -15,10 +15,11 @@ public partial class Recursos : Node
 		SubidaEnergia();
 	}
 
-	private async void SubidaEnergia()
+	public void SubidaEnergia()
 	{
+		GD.Print("Subiendo energia...");
 		SumarEnergia();
-		await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+
 	}
 
 	public void SumarEnergia()

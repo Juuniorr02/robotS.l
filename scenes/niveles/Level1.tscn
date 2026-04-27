@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtg567rrxi280"]
 
 [ext_resource type="Script" uid="uid://6x4koy7xn8jl" path="res://scripts/enemigos/BaseEnemigo.cs" id="1_kbnhg"]
-[ext_resource type="Script" uid="uid://e1irab0vxufk" path="res://scripts/GameManager.cs" id="1_v5lfy"]
 [ext_resource type="PackedScene" uid="uid://cptkelbeah0d6" path="res://scenes/menus/iu.tscn" id="2_7vc0l"]
+[ext_resource type="PackedScene" uid="uid://bipaqfiuricdp" path="res://scenes/menus/menu_pausa.tscn" id="3_7vc0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
 
@@ -45,5 +45,4 @@ texture = SubResource("PlaceholderTexture2D_l3g4b")
 
 [node name="IU" parent="Battlefield" instance=ExtResource("2_7vc0l")]
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_v5lfy")
+[node name="menu_pausa" parent="." instance=ExtResource("3_7vc0l")]

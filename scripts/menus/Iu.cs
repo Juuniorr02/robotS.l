@@ -15,6 +15,8 @@ public partial class Iu : Control
 
     public override void _Ready()
     {
+        ProcessMode = ProcessModeEnum.Pausable;
+        
         MejorarButton = GetNode<Button>("%MejorarButton");
         EnergiaLabel = GetNode<Label>("%EnergiaLabel");
 
@@ -22,6 +24,8 @@ public partial class Iu : Control
         Penetrador = GetNodeOrNull<TextureButton>("%Penetrador");
         Tanque = GetNodeOrNull<TextureButton>("%Tanque");
         Artillero = GetNodeOrNull<TextureButton>("%Artillero");
+
+        MejorarButton.Text = $"Mejorar: ({100} energia)";
 
         ConfigurarBoton(Ligero);
         ConfigurarBoton(Penetrador);
@@ -31,33 +35,75 @@ public partial class Iu : Control
         if (MejorarButton != null)
             MejorarButton.Pressed += OnMejorarButtonPressed;
 
-        UpdateIU();
+        ActualizarIUCadaSegundo();
     }
     
     private void ConfigurarBoton(TextureButton b)
     {
         if (b == null) return;
 
-        b.ProcessMode = ProcessModeEnum.Always;
+        b.ProcessMode = ProcessModeEnum.Pausable;
         b.MouseFilter = MouseFilterEnum.Stop;
     }
 
-    public override void _Process(double delta)
+    private async void ActualizarIUCadaSegundo()
     {
-        UpdateIU();
+        while (true)
+        {
+            UpdateIU();
+            await ToSignal(GetTree().CreateTimer(1.0f, false), "timeout");
+        }
     }
 
     private void UpdateIU()
     {
+        Recursos.Instance.SubidaEnergia();
         EnergiaLabel.Text = $"Energia: {Recursos.Instance.Energia}";
     }
 
     private void OnMejorarButtonPressed()
     {
-        if (contador < 5)
+        int coste = 100;
+
+        if (contador == 0 && Recursos.Instance.Energia >= 100)
         {
+            coste = 200;
+            MejorarButton.Text = $"Mejorar: ({coste} energia)";
+            Recursos.Instance.Energia -= 100;
             Recursos.Instance.MejorarEnergia();
+            UpdateIU();
             contador++;
+        }
+        else if (contador == 1 && Recursos.Instance.Energia >= 200)
+        {
+            coste = 300;
+            MejorarButton.Text = $"Mejorar: ({coste} energia)";
+            Recursos.Instance.Energia -= 200;
+            Recursos.Instance.MejorarEnergia();
+            UpdateIU();
+            contador++;
+        }
+        else if (contador == 2 && Recursos.Instance.Energia >= 300)
+        {
+            coste = 400;
+            MejorarButton.Text = $"Mejorar: ({coste} energia)";
+            Recursos.Instance.Energia -= 300;
+            Recursos.Instance.MejorarEnergia();
+            UpdateIU();
+            contador++;
+        }
+
+        else if (contador == 3 && Recursos.Instance.Energia >= 400)
+        {
+            Recursos.Instance.Energia -= 400;
+            Recursos.Instance.MejorarEnergia();
+            UpdateIU();
+            contador++;
+        }
+        else if (contador == 4)
+        {
+            MejorarButton.Text = $"Mejorar: (MAX)";
+            MejorarButton.Disabled = true;
         }
     }
 }

@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6o5datpm682p"]
+[gd_scene load_steps=2 format=3 uid="uid://dd006bdf5yjbn"]
 
-[ext_resource type="Script" uid="uid://ck7o6ah3nsvvh" path="res://scripts/ui/MenuVictoria.cs" id="1_di162"]
+[ext_resource type="Script" uid="uid://c08jo05j6vida" path="res://scripts/menus/MenuVictoria.cs" id="1_8hmkv"]
 
 [node name="menu_victoria" type="CanvasLayer"]
-script = ExtResource("1_di162")
+script = ExtResource("1_8hmkv")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
