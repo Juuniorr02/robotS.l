@@ -1,11 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=8 format=3 uid="uid://dtg567rrxi280"]
 
 [ext_resource type="Script" uid="uid://6x4koy7xn8jl" path="res://scripts/enemigos/BaseEnemigo.cs" id="1_kbnhg"]
 [ext_resource type="Script" uid="uid://e1irab0vxufk" path="res://scripts/GameManager.cs" id="1_v5lfy"]
-[ext_resource type="PackedScene" uid="uid://sndo2fbpscsm" path="res://scenes/robots/robotLigero.tscn" id="2_7pmre"]
-[ext_resource type="PackedScene" uid="uid://csgh65lpkm8kb" path="res://scenes/robots/robotTanque.tscn" id="3_o0cuc"]
-[ext_resource type="PackedScene" uid="uid://dyerjirl457jh" path="res://scenes/robots/robotPenetrador.tscn" id="4_1k7bg"]
-[ext_resource type="PackedScene" uid="uid://drtd3v6k7n4cg" path="res://scenes/robots/robotArtillero.tscn" id="5_gu6vx"]
+[ext_resource type="PackedScene" uid="uid://cptkelbeah0d6" path="res://scenes/menus/iu.tscn" id="2_7vc0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
 
@@ -35,10 +32,6 @@ texture = SubResource("PlaceholderTexture2D_v5lfy")
 
 [node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
 script = ExtResource("1_kbnhg")
-TropaLigera = ExtResource("2_7pmre")
-TropaTanque = ExtResource("3_o0cuc")
-TropaPenetrador = ExtResource("4_1k7bg")
-TropaArtillero = ExtResource("5_gu6vx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]
 shape = SubResource("RectangleShape2D_7vc0l")
@@ -50,17 +43,7 @@ texture = SubResource("PlaceholderTexture2D_l3g4b")
 
 [node name="UnitsContainer" type="Node2D" parent="Battlefield"]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Botones" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Energia" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="IU" parent="Battlefield" instance=ExtResource("2_7vc0l")]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_v5lfy")

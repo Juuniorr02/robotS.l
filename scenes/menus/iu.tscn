@@ -268,7 +268,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_pd0vv")
-text = "Borrar"
+text = "Mejorar"
 
 [connection signal="pressed" from="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Ligero/Ligero/Ligero/Ligero/Ligero/Ligero" to="." method="OnArcherPressed"]
 [connection signal="pressed" from="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers/Penetrador/Penetrador/Penetrador/Penetrador/Penetrador/Penetrador" to="." method="OnCannonPressed"]

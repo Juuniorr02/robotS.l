@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://glkqem0qes2a"]
+[gd_scene load_steps=3 format=3 uid="uid://ccy5wnyi72bqw"]
 
-[ext_resource type="Script" uid="uid://diifuf6vbqyod" path="res://scripts/ui/MenuController.cs" id="1"]
-[ext_resource type="Texture2D" uid="uid://cphe0cuchlj5s" path="res://assets/ui/background/fondo.png" id="1_vhthp"]
+[ext_resource type="Script" uid="uid://btqsgue7cbcio" path="res://scripts/menus/MenuController.cs" id="1_pvkhk"]
 
 [sub_resource type="Theme" id="Theme_vhthp"]
 
@@ -15,11 +14,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_vhthp")
 expand_mode = 1
 
 [node name="MenuController" type="Node" parent="."]
-script = ExtResource("1")
+script = ExtResource("1_pvkhk")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 12
@@ -35,10 +33,6 @@ grow_vertical = 0
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="CargarPartida" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Cargar partida"
 
 [node name="NuevaPartida" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

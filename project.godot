@@ -11,7 +11,12 @@ config_version=5
 [application]
 
 config/name="RobotS.L"
+run/main_scene="uid://ccy5wnyi72bqw"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
+
+[autoload]
+
+Recursos="*res://scripts/interfaz/Recursos.cs"
 
 [dotnet]
 
