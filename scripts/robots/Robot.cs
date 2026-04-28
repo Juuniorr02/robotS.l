@@ -14,23 +14,29 @@ public partial class Robot : CharacterBody2D
     
     [Export] public float Velocidad = 50.0f;
     [Export] public int Danio = 10;
-    [Export] public float RangoAtaque = 30.0f;
+    [Export] public float RangoAtaque = 40.0f;
     
     protected bool EstaAtacando = false;
+    protected float TemporizadorAtaque = 0.0f;
     protected RayCast2D Detector;
     protected ProgressBar BarraVida;
 
     public override void _Ready()
     {
+        // Usamos GetNodeOrNull para evitar errores si olvidas ponerlo en una clase hija
         Detector = GetNode<RayCast2D>("RayCast2D");
-        BarraVida = GetNode<ProgressBar>("ProgressBar");
+        BarraVida = GetNodeOrNull<ProgressBar>("ProgressBar");
         
         VidaActual = VidaMax;
         ConfigurarBarraVida();
 
+        // Configuración del RayCast
         float direccion = EsDelJugador ? 1.0f : -1.0f;
         Detector.TargetPosition = new Vector2(RangoAtaque * direccion, 0);
-        
+        Detector.Enabled = true;
+        Detector.CollideWithBodies = true; // IMPORTANTE: Para detectar CharacterBody2D
+        Detector.CollideWithAreas = false;
+
         if (Visual != null)
         {
             Vector2 nuevaEscala = Visual.Scale;
@@ -40,41 +46,22 @@ public partial class Robot : CharacterBody2D
         }
     }
 
-private void ConfigurarBarraVida()
-{
-    if (BarraVida == null) return;
+    private void ConfigurarBarraVida()
+    {
+        if (BarraVida == null) return;
+        BarraVida.Scale = Vector2.One; 
+        BarraVida.CustomMinimumSize = new Vector2(30, 4);
+        BarraVida.Size = new Vector2(30, 4);
+        BarraVida.Position = new Vector2(-15, -35); 
+        BarraVida.MaxValue = VidaMax;
+        BarraVida.Value = VidaActual;
+        BarraVida.ShowPercentage = false;
 
-    // 1. FORZAR ESCALA Y QUITAR RESTRICCIONES
-    BarraVida.Scale = Vector2.One; // Fuerza escala 1:1
-    BarraVida.CustomMinimumSize = new Vector2(30, 4); // Define el tamaño real
-    BarraVida.Size = new Vector2(30, 4);
-    
-    // Esto evita que el nodo crezca si el texto (que está oculto) es grande
-    BarraVida.ClipContents = true; 
-
-    // 2. POSICIONAMIENTO MANUAL
-    // Lo movemos a mano para que quede sobre el robot
-    BarraVida.Position = new Vector2(-15, -30); 
-
-    // 3. VALORES
-    BarraVida.MaxValue = VidaMax;
-    BarraVida.Value = VidaActual;
-    BarraVida.ShowPercentage = false;
-
-    // 4. ESTILO (Aquí forzamos que no tenga márgenes internos que lo inflen)
-    StyleBoxFlat estiloRelleno = new StyleBoxFlat();
-    estiloRelleno.BgColor = new Color(0.2f, 0.8f, 0.2f);
-    estiloRelleno.ContentMarginBottom = 0;
-    estiloRelleno.ContentMarginTop = 0;
-
-    StyleBoxFlat estiloFondo = new StyleBoxFlat();
-    estiloFondo.BgColor = new Color(0, 0, 0, 0.5f);
-    estiloFondo.ContentMarginBottom = 0;
-    estiloFondo.ContentMarginTop = 0;
-
-    BarraVida.AddThemeStyleboxOverride("fill", estiloRelleno);
-    BarraVida.AddThemeStyleboxOverride("background", estiloFondo);
-}
+        StyleBoxFlat fill = new StyleBoxFlat { BgColor = new Color(0.2f, 0.8f, 0.2f) };
+        StyleBoxFlat bg = new StyleBoxFlat { BgColor = new Color(0, 0, 0, 0.6f) };
+        BarraVida.AddThemeStyleboxOverride("fill", fill);
+        BarraVida.AddThemeStyleboxOverride("background", bg);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -84,25 +71,40 @@ private void ConfigurarBarraVida()
         if (Detector.IsColliding())
         {
             var objeto = Detector.GetCollider();
+            
+            // Verificamos si el objeto chocado hereda de Robot
             if (objeto is Robot otroRobot && otroRobot.EsDelJugador != this.EsDelJugador)
             {
                 EstaAtacando = true;
                 velocity.X = 0;
+
+                TemporizadorAtaque += (float)delta;
+                if (TemporizadorAtaque >= 1.0f) 
+                {
+                    otroRobot.RecibirDanio(this.Danio);
+                    TemporizadorAtaque = 0.0f;
+                    GD.Print($"{this.Nombre} golpea a {otroRobot.Nombre}");
+                }
             }
             else
             {
-                EstaAtacando = false;
-                velocity.X = Velocidad * direccion;
+                Moverse(ref velocity, direccion);
             }
         }
         else
         {
-            EstaAtacando = false;
-            velocity.X = Velocidad * direccion;
+            Moverse(ref velocity, direccion);
         }
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    private void Moverse(ref Vector2 velocity, float direccion)
+    {
+        EstaAtacando = false;
+        TemporizadorAtaque = 0.0f;
+        velocity.X = Velocidad * direccion;
     }
 
     public virtual void RecibirDanio(int cantidad)
