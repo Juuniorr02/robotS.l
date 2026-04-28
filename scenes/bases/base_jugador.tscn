@@ -6,10 +6,12 @@ size = Vector2(40, 40)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5lfy"]
 
 [node name="BaseJugador" type="Area2D"]
+light_mask = 16
+visibility_layer = 992
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 512
-visibility_layer = 512
+light_mask = 16
+visibility_layer = 992
 shape = SubResource("RectangleShape2D_l3g4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

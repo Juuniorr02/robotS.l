@@ -62,7 +62,7 @@ animations = [{
 
 [node name="RobotPenetrador" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 992
 script = ExtResource("1_jl2es")
 Tipo = 2
 Visual = NodePath("AnimatedSprite2D")
@@ -76,6 +76,8 @@ sprite_frames = SubResource("SpriteFrames_jrcbu")
 frame_progress = 0.35206023
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 992
 shape = SubResource("CapsuleShape2D_jrcbu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

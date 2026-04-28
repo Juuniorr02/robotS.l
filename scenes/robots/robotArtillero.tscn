@@ -7,14 +7,16 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
 [node name="RobotArtillero" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 8
+collision_mask = 992
 script = ExtResource("1_4t5sf")
 Tipo = 3
 Visual = NodePath("AnimatedSprite2D")
 Nombre = "Robot Artillero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 8
+visibility_layer = 992
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

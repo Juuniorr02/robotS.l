@@ -1,0 +1,112 @@
+[gd_scene load_steps=21 format=3 uid="uid://c1v1wfktgaxac"]
+
+[ext_resource type="Script" uid="uid://dflqatujxh2tf" path="res://scripts/robots/RobotLigero.cs" id="1_xw5sy"]
+[ext_resource type="Texture2D" uid="uid://dm2vfc0axrpsu" path="res://assets/enemigos/ligero/fotograma0000.png" id="2_t3y3e"]
+[ext_resource type="Texture2D" uid="uid://bc1yvvfnqfv67" path="res://assets/enemigos/ligero/fotograma0001.png" id="3_b1wvp"]
+[ext_resource type="Texture2D" uid="uid://erlchwkut6qw" path="res://assets/enemigos/ligero/fotograma0002.png" id="4_xdyws"]
+[ext_resource type="Texture2D" uid="uid://bhxf2nsdd267x" path="res://assets/enemigos/ligero/fotograma0003.png" id="5_vc6xr"]
+[ext_resource type="Texture2D" uid="uid://wnh54vbs0dl6" path="res://assets/enemigos/ligero/fotograma0004.png" id="6_vckd3"]
+[ext_resource type="Texture2D" uid="uid://qx5g4axj5q7d" path="res://assets/enemigos/ligero/fotograma0005.png" id="7_y6hhi"]
+[ext_resource type="Texture2D" uid="uid://cseoj5omltyma" path="res://assets/enemigos/ligero/fotograma0006.png" id="8_0ip6a"]
+[ext_resource type="Texture2D" uid="uid://bdcchgtqngmri" path="res://assets/enemigos/ligero/fotograma0007.png" id="9_u0ow8"]
+[ext_resource type="Texture2D" uid="uid://bgjyi1wqxkdqv" path="res://assets/enemigos/ligero/fotograma0008.png" id="10_w3jya"]
+[ext_resource type="Texture2D" uid="uid://yinrdncmppr8" path="res://assets/enemigos/ligero/fotograma0009.png" id="11_gu1q5"]
+[ext_resource type="Texture2D" uid="uid://tuc8r8x5mbke" path="res://assets/enemigos/ligero/fotograma0010.png" id="12_u2yxr"]
+[ext_resource type="Texture2D" uid="uid://ditv6jhmvlmqf" path="res://assets/enemigos/ligero/fotograma0011.png" id="13_xkilv"]
+[ext_resource type="Texture2D" uid="uid://bwif1607he71g" path="res://assets/enemigos/ligero/fotograma0012.png" id="14_rmqxr"]
+[ext_resource type="Texture2D" uid="uid://dot3apvhs5q7x" path="res://assets/enemigos/ligero/fotograma0013.png" id="15_kpmde"]
+[ext_resource type="Texture2D" uid="uid://k40yf4vy3to8" path="res://assets/enemigos/ligero/fotograma0014.png" id="16_k2ekw"]
+[ext_resource type="Texture2D" uid="uid://rg7icyjh7agq" path="res://assets/enemigos/ligero/fotograma0015.png" id="17_52bw1"]
+[ext_resource type="Texture2D" uid="uid://drd5gcl8xemgs" path="res://assets/enemigos/ligero/fotograma0016.png" id="18_4r3pi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t3y3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b1wvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xdyws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vc6xr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vckd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y6hhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0ip6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u0ow8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_w3jya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gu1q5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_u2yxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xkilv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rmqxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kpmde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_k2ekw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_52bw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4r3pi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 22.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
+
+[node name="RobotLigero" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
+collision_layer = 32
+collision_mask = 31
+script = ExtResource("1_xw5sy")
+Visual = NodePath("AnimatedSprite2D")
+Nombre = "Robot Ligero"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_jrcbu")
+frame_progress = 0.51505905
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 32
+visibility_layer = 31
+position = Vector2(1, 13)
+shape = SubResource("CapsuleShape2D_jrcbu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -2.0
+offset_top = -27.0
+offset_right = 2.0
+offset_bottom = -19.0
+show_percentage = false

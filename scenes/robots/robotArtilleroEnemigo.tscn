@@ -1,25 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://csgh65lpkm8kb"]
+[gd_scene load_steps=4 format=3 uid="uid://df16c66st6a4d"]
 
-[ext_resource type="Script" uid="uid://cx5am1v3bio0r" path="res://scripts/robots/RobotTanque.cs" id="1_v6bhk"]
+[ext_resource type="Script" uid="uid://bgnhsn5g81myd" path="res://scripts/robots/RobotArtillero.cs" id="1_7brkp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
-[node name="RobotTanque" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
-collision_layer = 4
-collision_mask = 992
-script = ExtResource("1_v6bhk")
-Tipo = 1
+[node name="RobotArtillero" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
+collision_layer = 256
+collision_mask = 31
+script = ExtResource("1_7brkp")
+Tipo = 3
 Visual = NodePath("AnimatedSprite2D")
-Nombre = "Robot Tanque"
+Nombre = "Robot Artillero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 8
+visibility_layer = 992
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 4
-visibility_layer = 992
+light_mask = 256
+visibility_layer = 31
 shape = SubResource("CapsuleShape2D_jrcbu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
