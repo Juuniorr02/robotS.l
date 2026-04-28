@@ -9,35 +9,72 @@ public partial class Robot : CharacterBody2D
     [Export] public Node2D Visual; 
 
     [Export] public string Nombre;
-    [Export] public int Vida = 100;
+    [Export] public int VidaMax = 100;
+    public int VidaActual;
+    
     [Export] public float Velocidad = 50.0f;
     [Export] public int Danio = 10;
     [Export] public float RangoAtaque = 30.0f;
     
     protected bool EstaAtacando = false;
     protected RayCast2D Detector;
+    protected ProgressBar BarraVida;
 
     public override void _Ready()
     {
         Detector = GetNode<RayCast2D>("RayCast2D");
+        BarraVida = GetNode<ProgressBar>("ProgressBar");
         
+        VidaActual = VidaMax;
+        ConfigurarBarraVida();
+
         float direccion = EsDelJugador ? 1.0f : -1.0f;
         Detector.TargetPosition = new Vector2(RangoAtaque * direccion, 0);
         
         if (Visual != null)
         {
             Vector2 nuevaEscala = Visual.Scale;
-            
-            // --- CAMBIO AQUÍ ---
-            // Invertimos la lógica: Si tus sprites originales miran a la izquierda,
-            // el jugador (que va a la derecha) necesita escala negativa (-1) 
-            // y el enemigo (que va a la izquierda) necesita escala positiva (1).
             float orientacion = EsDelJugador ? -1.0f : 1.0f; 
-            
             nuevaEscala.X = Mathf.Abs(nuevaEscala.X) * orientacion;
             Visual.Scale = nuevaEscala;
         }
     }
+
+private void ConfigurarBarraVida()
+{
+    if (BarraVida == null) return;
+
+    // 1. FORZAR ESCALA Y QUITAR RESTRICCIONES
+    BarraVida.Scale = Vector2.One; // Fuerza escala 1:1
+    BarraVida.CustomMinimumSize = new Vector2(30, 4); // Define el tamaño real
+    BarraVida.Size = new Vector2(30, 4);
+    
+    // Esto evita que el nodo crezca si el texto (que está oculto) es grande
+    BarraVida.ClipContents = true; 
+
+    // 2. POSICIONAMIENTO MANUAL
+    // Lo movemos a mano para que quede sobre el robot
+    BarraVida.Position = new Vector2(-15, -30); 
+
+    // 3. VALORES
+    BarraVida.MaxValue = VidaMax;
+    BarraVida.Value = VidaActual;
+    BarraVida.ShowPercentage = false;
+
+    // 4. ESTILO (Aquí forzamos que no tenga márgenes internos que lo inflen)
+    StyleBoxFlat estiloRelleno = new StyleBoxFlat();
+    estiloRelleno.BgColor = new Color(0.2f, 0.8f, 0.2f);
+    estiloRelleno.ContentMarginBottom = 0;
+    estiloRelleno.ContentMarginTop = 0;
+
+    StyleBoxFlat estiloFondo = new StyleBoxFlat();
+    estiloFondo.BgColor = new Color(0, 0, 0, 0.5f);
+    estiloFondo.ContentMarginBottom = 0;
+    estiloFondo.ContentMarginTop = 0;
+
+    BarraVida.AddThemeStyleboxOverride("fill", estiloRelleno);
+    BarraVida.AddThemeStyleboxOverride("background", estiloFondo);
+}
 
     public override void _PhysicsProcess(double delta)
     {
@@ -51,7 +88,6 @@ public partial class Robot : CharacterBody2D
             {
                 EstaAtacando = true;
                 velocity.X = 0;
-                // Aquí podrías poner: if (Visual is AnimatedSprite2D anim) anim.Play("ataque");
             }
             else
             {
@@ -63,7 +99,6 @@ public partial class Robot : CharacterBody2D
         {
             EstaAtacando = false;
             velocity.X = Velocidad * direccion;
-            // Aquí podrías poner: if (Visual is AnimatedSprite2D anim) anim.Play("caminar");
         }
 
         Velocity = velocity;
@@ -72,8 +107,9 @@ public partial class Robot : CharacterBody2D
 
     public virtual void RecibirDanio(int cantidad)
     {
-        Vida -= cantidad;
-        if (Vida <= 0) Morir();
+        VidaActual -= cantidad;
+        if (BarraVida != null) BarraVida.Value = VidaActual;
+        if (VidaActual <= 0) Morir();
     }
 
     protected void Morir() => QueueFree();
