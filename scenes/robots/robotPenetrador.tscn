@@ -82,7 +82,9 @@ visibility_layer = 992
 shape = SubResource("CapsuleShape2D_jrcbu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2(1.0347586, 1.0281433)
 target_position = Vector2(-50, 0)
+collision_mask = 992
 
 [node name="Timer" type="Timer" parent="."]
 
