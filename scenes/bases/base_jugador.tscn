@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bopqvg7j27pma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
+size = Vector2(40, 40)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5lfy"]
+
+[node name="BaseJugador" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 512
+visibility_layer = 512
+shape = SubResource("RectangleShape2D_l3g4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(40, 40)
+texture = SubResource("PlaceholderTexture2D_v5lfy")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://dk3ha8ukcweta"]
+
+[ext_resource type="Script" uid="uid://6x4koy7xn8jl" path="res://scripts/enemigos/BaseEnemigo.cs" id="1_ygu5e"]
+[ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="2_6w30m"]
+[ext_resource type="PackedScene" uid="uid://sndo2fbpscsm" path="res://scenes/robots/robotLigero.tscn" id="3_8o64r"]
+[ext_resource type="PackedScene" uid="uid://csgh65lpkm8kb" path="res://scenes/robots/robotTanque.tscn" id="4_p8xgh"]
+[ext_resource type="PackedScene" uid="uid://dyerjirl457jh" path="res://scenes/robots/robotPenetrador.tscn" id="5_gpxuo"]
+[ext_resource type="PackedScene" uid="uid://drtd3v6k7n4cg" path="res://scenes/robots/robotArtillero.tscn" id="6_7gukx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vc0l"]
+size = Vector2(38, 39)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l3g4b"]
+
+[node name="BaseEnemigo" type="Area2D"]
+script = ExtResource("1_ygu5e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 16
+visibility_layer = 16
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7vc0l")
+
+[node name="SpawnerEnemigo" type="Marker2D" parent="."]
+position = Vector2(-21, 5)
+script = ExtResource("2_6w30m")
+EscenaLigero = ExtResource("3_8o64r")
+EscenaTanque = ExtResource("4_p8xgh")
+EscenaPenetrador = ExtResource("5_gpxuo")
+EscenaArtillero = ExtResource("6_7gukx")
+EsSpawnerJugador = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(40, 40)
+texture = SubResource("PlaceholderTexture2D_l3g4b")

@@ -1,22 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=11 format=3 uid="uid://dtg567rrxi280"]
 
 [ext_resource type="Script" uid="uid://cjb2nb5olb80f" path="res://scripts/interfaz/Camara.cs" id="1_1k7bg"]
-[ext_resource type="Script" uid="uid://6x4koy7xn8jl" path="res://scripts/enemigos/BaseEnemigo.cs" id="1_kbnhg"]
 [ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="1_o0cuc"]
+[ext_resource type="PackedScene" uid="uid://bopqvg7j27pma" path="res://scenes/bases/base_jugador.tscn" id="2_0sb1u"]
 [ext_resource type="PackedScene" uid="uid://cptkelbeah0d6" path="res://scenes/menus/iu.tscn" id="2_7vc0l"]
 [ext_resource type="PackedScene" uid="uid://sndo2fbpscsm" path="res://scenes/robots/robotLigero.tscn" id="3_1k7bg"]
 [ext_resource type="PackedScene" uid="uid://bipaqfiuricdp" path="res://scenes/menus/menu_pausa.tscn" id="3_7vc0l"]
+[ext_resource type="PackedScene" uid="uid://dk3ha8ukcweta" path="res://scenes/bases/base_enemigo.tscn" id="3_kbnhg"]
 [ext_resource type="PackedScene" uid="uid://csgh65lpkm8kb" path="res://scenes/robots/robotTanque.tscn" id="4_gu6vx"]
 [ext_resource type="PackedScene" uid="uid://dyerjirl457jh" path="res://scenes/robots/robotPenetrador.tscn" id="5_dnnia"]
 [ext_resource type="PackedScene" uid="uid://drtd3v6k7n4cg" path="res://scenes/robots/robotArtillero.tscn" id="6_jnqtx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5lfy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vc0l"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l3g4b"]
 
 [node name="Main" type="Node2D"]
 
@@ -30,11 +23,8 @@ LimiteDerecho = 1150.0
 
 [node name="Battlefield" type="Node2D" parent="."]
 
-[node name="BaseJugador" type="Area2D" parent="Battlefield"]
+[node name="BaseJugador" parent="Battlefield" instance=ExtResource("2_0sb1u")]
 position = Vector2(21, 464)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseJugador"]
-shape = SubResource("RectangleShape2D_l3g4b")
 
 [node name="SpawnerJugador" type="Marker2D" parent="Battlefield/BaseJugador"]
 position = Vector2(20, 6)
@@ -44,33 +34,16 @@ EscenaTanque = ExtResource("4_gu6vx")
 EscenaPenetrador = ExtResource("5_dnnia")
 EscenaArtillero = ExtResource("6_jnqtx")
 
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/BaseJugador"]
-scale = Vector2(40, 40)
-texture = SubResource("PlaceholderTexture2D_v5lfy")
-
-[node name="BaseEnemigo" type="Area2D" parent="Battlefield"]
+[node name="BaseEnemigo" parent="Battlefield" instance=ExtResource("3_kbnhg")]
 position = Vector2(1121, 465)
-script = ExtResource("1_kbnhg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/BaseEnemigo"]
-shape = SubResource("RectangleShape2D_7vc0l")
-
-[node name="SpawnerEnemigo" type="Marker2D" parent="Battlefield/BaseEnemigo"]
-position = Vector2(-21, 5)
-script = ExtResource("1_o0cuc")
-EscenaLigero = ExtResource("3_1k7bg")
-EscenaTanque = ExtResource("4_gu6vx")
-EscenaPenetrador = ExtResource("5_dnnia")
-EscenaArtillero = ExtResource("6_jnqtx")
-EsSpawnerJugador = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/BaseEnemigo"]
-scale = Vector2(40, 40)
-texture = SubResource("PlaceholderTexture2D_l3g4b")
 
 [node name="UnitsContainer" type="Node2D" parent="Battlefield"]
 
 [node name="IU" parent="Battlefield" node_paths=PackedStringArray("_spawnerJugador") instance=ExtResource("2_7vc0l")]
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 6.0
 _spawnerJugador = NodePath("../BaseJugador/SpawnerJugador")
 
 [node name="menu_pausa" parent="." instance=ExtResource("3_7vc0l")]
