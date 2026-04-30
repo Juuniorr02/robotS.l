@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=14 format=3 uid="uid://cmbg45jihhwdg"]
 
 [ext_resource type="Script" uid="uid://cjb2nb5olb80f" path="res://scripts/interfaz/Camara.cs" id="1_1k7bg"]
 [ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="1_o0cuc"]
