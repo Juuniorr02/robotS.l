@@ -26,12 +26,12 @@ public partial class Robot : CharacterBody2D
         Detector = GetNode<RayCast2D>("RayCast2D");
         BarraVida = GetNodeOrNull<ProgressBar>("ProgressBar");
         
-        // --- CORRECCIÓN 1: SEGURIDAD DEL RAYCAST ---
         Detector.Enabled = true;
         Detector.CollideWithBodies = true;
-        Detector.CollideWithAreas = false;
-        Detector.AddException(this); // Esto obliga al rayo a ignorar al propio robot
-        // -------------------------------------------
+        // --- CAMBIO CLAVE: AHORA DETECTA ÁREAS ---
+        Detector.CollideWithAreas = true; 
+        // -----------------------------------------
+        Detector.AddException(this); 
 
         VidaActual = VidaMax;
         ConfigurarBarraVida();
@@ -51,10 +51,6 @@ public partial class Robot : CharacterBody2D
     private void ConfigurarBarraVida()
     {
         if (BarraVida == null) return;
-        BarraVida.Scale = Vector2.One; 
-        BarraVida.CustomMinimumSize = new Vector2(30, 4);
-        BarraVida.Size = new Vector2(30, 4);
-        BarraVida.Position = new Vector2(-15, -35); 
         BarraVida.MaxValue = VidaMax;
         BarraVida.Value = VidaActual;
         BarraVida.ShowPercentage = false;
@@ -70,29 +66,33 @@ public partial class Robot : CharacterBody2D
         Vector2 velocity = Velocity;
         float direccion = EsDelJugador ? 1.0f : -1.0f;
 
-        // --- CORRECCIÓN 2: FORZAR ACTUALIZACIÓN ---
         Detector.ForceRaycastUpdate(); 
-        // ------------------------------------------
 
         if (Detector.IsColliding())
         {
-            var objeto = Detector.GetCollider();
-            
-            // Usamos "as Robot" para ser más flexibles con la herencia
+            var objeto = Detector.GetCollider() as Node;
             Robot otroRobot = objeto as Robot;
 
+            // 1. Atacar Robot enemigo
             if (otroRobot != null && otroRobot.EsDelJugador != this.EsDelJugador)
             {
                 EstaAtacando = true;
                 velocity.X = 0;
-
-                TemporizadorAtaque += (float)delta;
-                if (TemporizadorAtaque >= 1.0f) 
-                {
-                    otroRobot.RecibirDanio(this.Danio);
-                    TemporizadorAtaque = 0.0f;
-                    GD.Print($"{this.Nombre} golpea a {otroRobot.Nombre}");
-                }
+                EjecutarAtaque(() => otroRobot.RecibirDanio(this.Danio), (float)delta);
+            }
+            // 2. Atacar Base Enemiga (Nombres actualizados)
+            else if (EsDelJugador && objeto.Name == "BaseEnemigo")
+            {
+                EstaAtacando = true;
+                velocity.X = 0;
+                EjecutarAtaque(() => Recursos.Instance.DanarEnemigo(this.Danio), (float)delta);
+            }
+            // 3. Atacar Base Jugador (Nombres actualizados)
+            else if (!EsDelJugador && objeto.Name == "BaseJugador")
+            {
+                EstaAtacando = true;
+                velocity.X = 0;
+                EjecutarAtaque(() => Recursos.Instance.DanarJugador(this.Danio), (float)delta);
             }
             else
             {
@@ -106,6 +106,16 @@ public partial class Robot : CharacterBody2D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    private void EjecutarAtaque(Action dañoAccion, float delta)
+    {
+        TemporizadorAtaque += delta;
+        if (TemporizadorAtaque >= 1.0f) 
+        {
+            dañoAccion.Invoke();
+            TemporizadorAtaque = 0.0f;
+        }
     }
 
     private void Moverse(ref Vector2 velocity, float direccion)

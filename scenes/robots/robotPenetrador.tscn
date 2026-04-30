@@ -83,14 +83,14 @@ shape = SubResource("CapsuleShape2D_jrcbu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 scale = Vector2(1.0347586, 1.0281433)
-target_position = Vector2(-50, 0)
+target_position = Vector2(50, 0)
 collision_mask = 992
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -2.0
-offset_top = -27.0
-offset_right = 2.0
-offset_bottom = -19.0
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -18.0
 show_percentage = false

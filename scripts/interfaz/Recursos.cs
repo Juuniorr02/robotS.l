@@ -31,6 +31,18 @@ public partial class Recursos : Node
 		EnergiaMejorada += 10;
 	}
 
+    public void DanarJugador(int cantidad)
+    {
+        Health -= cantidad;
+        if (Health < 0) Health = 0;
+    }
+
+    public void DanarEnemigo(int cantidad)
+    {
+        VidaEnemigo -= cantidad;
+        if (VidaEnemigo < 0) VidaEnemigo = 0;
+    }
+
 	public void ReiniciarEnergia()
 	{
 		Energia = 0;
@@ -38,10 +50,4 @@ public partial class Recursos : Node
 		Health = 100;
 		VidaEnemigo = 100;
 	}
-
-	/** Ligero --> Artillero
-	 * Penetrador --> Tanque
-	 * Tanque --> Ligero
-	 * Artillero --> Penetrador
-	 */
 }
