@@ -64,10 +64,7 @@ public partial class OptionsController : Control
         resolucionOption.AddItem("2560x1440");
         resolucionOption.AddItem("3840x2160");
 
-        // Añadir modos de pantalla
-        modoOption.AddItem("Ventana");
         modoOption.AddItem("Pantalla completa");
-        modoOption.AddItem("Sin bordes");
 
         calidadOption.AddItem("Baja");
         calidadOption.AddItem("Media");
@@ -88,7 +85,7 @@ public partial class OptionsController : Control
         {
             if (keyEvent.Keycode == Key.Escape)
             {
-                GetTree().ChangeSceneToFile("res://scenes/menus/Menu.tscn");
+                GetTree().ChangeSceneToFile("res://scenes/menus/menu.tscn");
             }
         }
     }
@@ -212,12 +209,12 @@ public partial class OptionsController : Control
 
         // Guardar configuración
         SaveConfig(width, height, mode, calidad, volume, sfx, musica, sensibilidad, invertirY);
-        GetTree().ChangeSceneToFile("res://scenes/ui/Menu.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/menus/menu.tscn");
     }
 
     private void OnBack()
     {
-        GetTree().ChangeSceneToFile("res://scenes/menus/Menu.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/menus/menu.tscn");
     }
 
     // Función auxiliar para convertir de 0..1 a decibelios

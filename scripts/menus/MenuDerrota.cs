@@ -77,6 +77,6 @@ public partial class MenuDerrota : CanvasLayer
 	{
     	QuitarPausa();
     	Input.MouseMode = Input.MouseModeEnum.Visible;
-    	GetTree().ChangeSceneToFile("res://scenes/menus/Menu.tscn");
+    	GetTree().ChangeSceneToFile("res://scenes/menus/menu.tscn");
 	}
 }

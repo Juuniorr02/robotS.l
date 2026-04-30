@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccy5wnyi72bqw"]
 
-[ext_resource type="Script" uid="uid://btqsgue7cbcio" path="res://scripts/menus/MenuController.cs" id="1_pvkhk"]
+[ext_resource type="Script" uid="uid://btqsgue7cbcio" path="res://scripts/menus/MenuController.cs" id="1_v46pp"]
 
 [sub_resource type="Theme" id="Theme_vhthp"]
 
@@ -17,7 +17,7 @@ grow_vertical = 2
 expand_mode = 1
 
 [node name="MenuController" type="Node" parent="."]
-script = ExtResource("1_pvkhk")
+script = ExtResource("1_v46pp")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 12
