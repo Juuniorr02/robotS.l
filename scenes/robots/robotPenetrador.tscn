@@ -64,15 +64,16 @@ animations = [{
 collision_layer = 2
 collision_mask = 992
 script = ExtResource("1_jl2es")
-Tipo = 2
+IsFacingLeftByDefault = true
 Visual = NodePath("AnimatedSprite2D")
+Tipo = 2
 Nombre = "Robot Penetrador"
 Danio = 45
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-3.9999998, -28.999998)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-5, -27)
+scale = Vector2(0.09, 0.09)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 frame_progress = 0.35206023
 
