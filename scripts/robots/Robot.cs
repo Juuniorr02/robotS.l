@@ -4,21 +4,21 @@ using GameConstants;
 
 public partial class Robot : CharacterBody2D
 {
+    // ... (Mantén tus variables de ExportGroup igual) ...
     [ExportGroup("Configuración Visual")]
-    [Export] public bool IsFacingLeftByDefault = false; // Configura esto en el Inspector
+    [Export] public bool IsFacingLeftByDefault = false;
     [Export] public Node2D Visual; 
+    [Export] protected AnimatedSprite2D Anim;
 
     [ExportGroup("Atributos")]
-    [Export] public TipoTropa Tipo;
+    [Export] public TipoTropa Tipo; // Asegúrate de asignar esto en el Inspector para cada robot
     [Export] public bool EsDelJugador = true;
     [Export] public string Nombre;
     [Export] public int VidaMax = 100;
     public int VidaActual;
-    [Export] protected AnimatedSprite2D Anim;
-
     
     [Export] public float Velocidad = 50.0f;
-    [Export] public int Danio = 10;
+    [Export] public int DanioBase = 10; // Renombrado para claridad
     [Export] public float RangoAtaque = 50.0f; 
     
     protected bool EstaAtacando = false;
@@ -40,54 +40,24 @@ public partial class Robot : CharacterBody2D
         VidaActual = VidaMax;
         ConfigurarBarraVida();
 
-        // 1. Orientar el RayCast según el equipo
         float direccionMovimiento = EsDelJugador ? 1.0f : -1.0f;
         Detector.TargetPosition = new Vector2(RangoAtaque * direccionMovimiento, 0);
         
-        // 2. LÓGICA DE VOLTEO (Inspirada en tu script de Enemy)
         if (Visual != null)
         {
             Vector2 nuevaEscala = Visual.Scale;
-            
-            // Si el jugador se mueve a la derecha (1.0) y el arte mira a la izquierda, hay que voltear (-1.0)
-            // Si el enemigo se mueve a la izquierda (-1.0) y el arte mira a la izquierda, se queda igual (1.0)
             float orientacionFinal = EsDelJugador ? 1.0f : -1.0f;
-
-            if (IsFacingLeftByDefault)
-            {
-                orientacionFinal *= -1.0f;
-            }
-
+            if (IsFacingLeftByDefault) orientacionFinal *= -1.0f;
             nuevaEscala.X = Mathf.Abs(nuevaEscala.X) * orientacionFinal;
             Visual.Scale = nuevaEscala;
         }
-    }
 
-    private void ConfigurarBarraVida()
-    {
-        if (BarraVida == null) return;
-
-        // Estilos para que no salga gris
-        StyleBoxFlat styleFill = new StyleBoxFlat();
-        styleFill.BgColor = EsDelJugador ? new Color(0.2f, 0.8f, 0.2f) : new Color(0.8f, 0.2f, 0.2f);
-        
-        StyleBoxFlat styleBg = new StyleBoxFlat();
-        styleBg.BgColor = new Color(0.1f, 0.1f, 0.1f);
-
-        BarraVida.AddThemeStyleboxOverride("fill", styleFill);
-        BarraVida.AddThemeStyleboxOverride("background", styleBg);
-
-        BarraVida.MaxValue = VidaMax;
-        BarraVida.Value = VidaActual;
-        BarraVida.ShowPercentage = false;
+        if (Anim != null) Anim.Play("default");
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        Vector2 velocity = Velocity;
-        velocity.Y = 0; 
-
-        float direccion = EsDelJugador ? 1.0f : -1.0f;
+        Vector2 velocity = Velocity; 
         Detector.ForceRaycastUpdate(); 
 
         if (Detector.IsColliding())
@@ -95,56 +65,86 @@ public partial class Robot : CharacterBody2D
             var objeto = Detector.GetCollider() as Node;
             Robot otroRobot = objeto as Robot;
 
-            if (otroRobot != null && otroRobot.EsDelJugador != this.EsDelJugador)
+            bool objetivoEsRobotEnemigo = otroRobot != null && otroRobot.EsDelJugador != this.EsDelJugador;
+            bool objetivoEsBaseEnemiga = (EsDelJugador && objeto.Name.ToString().Contains("BaseEnemigo")) || 
+                                         (!EsDelJugador && objeto.Name.ToString().Contains("BaseJugador"));
+
+            if (objetivoEsRobotEnemigo || objetivoEsBaseEnemiga)
             {
                 velocity.X = 0;
-                EjecutarAtaque(() => otroRobot.RecibirDanio(this.Danio), (float)delta);
+                Velocity = velocity; 
+
+                // Lógica de ataque con cálculo de daño corregido
+                if (objetivoEsRobotEnemigo)
+                    EjecutarAtaque(() => otroRobot.RecibirDanio(CalcularDanioFinal(otroRobot)), (float)delta);
+                else
+                    EjecutarAtaque(() => {
+                        int danioABase = CalcularDanioFinal(null); // Daño reducido a bases
+                        if (EsDelJugador) Recursos.Instance.DanarEnemigo(danioABase);
+                        else Recursos.Instance.DanarJugador(danioABase);
+                    }, (float)delta);
+
+                MoveAndSlide();
+                return; 
             }
-            else if (EsDelJugador && objeto.Name.ToString().Contains("BaseEnemigo"))
-            {
-                velocity.X = 0;
-                EjecutarAtaque(() => Recursos.Instance.DanarEnemigo(this.Danio), (float)delta);
-            }
-            else if (!EsDelJugador && objeto.Name.ToString().Contains("BaseJugador"))
-            {
-                velocity.X = 0;
-                EjecutarAtaque(() => Recursos.Instance.DanarJugador(this.Danio), (float)delta);
-            }
-            else
-            {
-                Moverse(ref velocity, direccion);
-            }
-        }
-        else
-        {
-            Moverse(ref velocity, direccion);
         }
 
+        float direccion = EsDelJugador ? 1.0f : -1.0f;
+        Moverse(ref velocity, direccion);
         Velocity = velocity;
         MoveAndSlide();
     }
 
- protected virtual void EjecutarAtaque(Action dañoAccion, float delta)
-{
-    EstaAtacando = true;
-
-    // Aquí ponemos la animación por defecto para los robots cuerpo a cuerpo
-    if (Anim != null && Anim.Animation != "atacar") 
-        Anim.Play("atacar");
-
-    TemporizadorAtaque += delta;
-    if (TemporizadorAtaque >= 1.0f) 
+    // --- NUEVO MÉTODO PARA CALCULAR DAÑO ---
+private int CalcularDanioFinal(Robot objetivo)
     {
-        dañoAccion.Invoke();
-        TemporizadorAtaque = 0.0f;
-    }
-}
+        // 1. Si el objetivo es una Torre/Base: Reciben un 30% menos (Multiplicador 0.7)
+        if (objetivo == null) 
+        {
+            return Mathf.RoundToInt(DanioBase * 0.7f);
+        }
 
-    private void Moverse(ref Vector2 velocity, float direccion)
+        float multiplicador = 1.0f;
+
+        // 2. Lógica de Contra-tipos
+        // VENTAJAS (Atacante hace +50% de daño)
+        // Ligero > Artillero > Penetrador > Tanque > Ligero
+        if (this.Tipo == TipoTropa.Ligero && objetivo.Tipo == TipoTropa.Artillero) multiplicador = 1.5f;
+        else if (this.Tipo == TipoTropa.Artillero && objetivo.Tipo == TipoTropa.Penetrador) multiplicador = 1.5f;
+        else if (this.Tipo == TipoTropa.Penetrador && objetivo.Tipo == TipoTropa.Tanque) multiplicador = 1.5f;
+        else if (this.Tipo == TipoTropa.Tanque && objetivo.Tipo == TipoTropa.Ligero) multiplicador = 1.5f;
+
+        // RESISTENCIAS (Objetivo recibe -20% de daño si es el "counter" natural)
+        // Si el Ligero es atacado por el Tanque, el Ligero resiste.
+        else if (objetivo.Tipo == TipoTropa.Ligero && this.Tipo == TipoTropa.Tanque) multiplicador = 0.8f;
+        else if (objetivo.Tipo == TipoTropa.Artillero && this.Tipo == TipoTropa.Ligero) multiplicador = 0.8f;
+        else if (objetivo.Tipo == TipoTropa.Penetrador && this.Tipo == TipoTropa.Artillero) multiplicador = 0.8f;
+        else if (objetivo.Tipo == TipoTropa.Tanque && this.Tipo == TipoTropa.Penetrador) multiplicador = 0.8f;
+
+        return Mathf.RoundToInt(DanioBase * multiplicador);
+    }
+    protected virtual void EjecutarAtaque(Action dañoAccion, float delta)
+    {
+        EstaAtacando = true;
+        if (Anim != null && Anim.Animation != "atacar") 
+            Anim.Play("atacar");
+
+        TemporizadorAtaque += delta;
+        if (TemporizadorAtaque >= 1.0f) 
+        {
+            dañoAccion.Invoke();
+            TemporizadorAtaque = 0.0f;
+        }
+    }
+
+    protected void Moverse(ref Vector2 velocity, float direccion)
     {
         EstaAtacando = false;
         TemporizadorAtaque = 0.0f;
         velocity.X = Velocidad * direccion;
+
+        if (Anim != null && Anim.Animation != "default") 
+            Anim.Play("default");
     }
 
     public virtual void RecibirDanio(int cantidad)
@@ -155,4 +155,14 @@ public partial class Robot : CharacterBody2D
     }
 
     protected void Morir() => QueueFree();
+
+    private void ConfigurarBarraVida()
+    {
+        if (BarraVida == null) return;
+        StyleBoxFlat styleFill = new StyleBoxFlat { BgColor = EsDelJugador ? new Color(0.2f, 0.8f, 0.2f) : new Color(0.8f, 0.2f, 0.2f) };
+        BarraVida.AddThemeStyleboxOverride("fill", styleFill);
+        BarraVida.MaxValue = VidaMax;
+        BarraVida.Value = VidaActual;
+        BarraVida.ShowPercentage = false;
+    }
 }
