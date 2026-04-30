@@ -86,7 +86,9 @@ collision_mask = 31
 script = ExtResource("1_xw5sy")
 IsFacingLeftByDefault = true
 Visual = NodePath("AnimatedSprite2D")
+EsDelJugador = false
 Nombre = "Robot Ligero"
+Velocidad = 75.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

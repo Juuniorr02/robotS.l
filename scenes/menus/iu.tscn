@@ -90,7 +90,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Vida: 100"
+text = "Vida: 200"
 vertical_alignment = 1
 
 [node name="Separation2" type="MarginContainer" parent="IU/IU/IU/Top/Stats/Stats/Stats/Stats/Stats/Stats/Stats/Stats"]
@@ -107,7 +107,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Vida Enemigo: 100"
+text = "Vida Enemigo: 400"
 vertical_alignment = 1
 
 [node name="Separation3" type="MarginContainer" parent="IU/IU/IU/Top/Stats/Stats/Stats/Stats/Stats/Stats/Stats/Stats"]

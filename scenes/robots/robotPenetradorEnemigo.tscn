@@ -61,13 +61,17 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
 [node name="RobotPenetrador" type="CharacterBody2D" node_paths=PackedStringArray("Visual")]
-collision_layer = 66
+collision_layer = 64
 collision_mask = 31
 script = ExtResource("1_knqco")
 IsFacingLeftByDefault = true
 Visual = NodePath("AnimatedSprite2D")
 Tipo = 2
+EsDelJugador = false
 Nombre = "Robot Penetrador"
+VidaMax = 125
+Velocidad = 30.0
+DanioBase = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

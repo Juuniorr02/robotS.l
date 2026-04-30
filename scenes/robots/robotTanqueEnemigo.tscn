@@ -71,7 +71,10 @@ script = ExtResource("1_7xnys")
 IsFacingLeftByDefault = true
 Visual = NodePath("AnimatedSprite2D")
 Tipo = 1
+EsDelJugador = false
 Nombre = "Robot Tanque"
+VidaMax = 200
+Velocidad = 20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 19)

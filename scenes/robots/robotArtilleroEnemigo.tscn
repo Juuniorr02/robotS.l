@@ -99,7 +99,11 @@ collision_mask = 31
 script = ExtResource("1_7brkp")
 Visual = NodePath("AnimatedSprite2D")
 Tipo = 3
+EsDelJugador = false
 Nombre = "Robot Artillero"
+VidaMax = 75
+Velocidad = 40.0
+DanioBase = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 8

@@ -8,8 +8,8 @@ public partial class Recursos : Node
 
 	public int Energia = 0;
 	public int EnergiaMejorada = 0;
-	public int Health = 100;
-	public int VidaEnemigo = 100;
+	public int Health = 1000;
+	public int VidaEnemigo = 2500;
 
 	public override void _Ready()
 	{
@@ -48,8 +48,8 @@ public partial class Recursos : Node
 	{
 		Energia = 0;
 		EnergiaMejorada = 0;
-		Health = 100;
-		VidaEnemigo = 100;
+		Health = 1000;
+		VidaEnemigo = 2500;
 	}
 
 	public void LoadConfig()

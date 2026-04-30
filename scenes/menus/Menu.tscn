@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccy5wnyi72bqw"]
+[gd_scene load_steps=4 format=3 uid="uid://ccy5wnyi72bqw"]
 
+[ext_resource type="Texture2D" uid="uid://br7oldejan3py" path="res://assets/fondos/FondoMenutesto.png" id="1_63g1t"]
 [ext_resource type="Script" uid="uid://btqsgue7cbcio" path="res://scripts/menus/MenuController.cs" id="1_v46pp"]
 
 [sub_resource type="Theme" id="Theme_vhthp"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_63g1t")
 expand_mode = 1
 
 [node name="MenuController" type="Node" parent="."]

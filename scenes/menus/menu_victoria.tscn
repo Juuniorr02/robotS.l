@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd006bdf5yjbn"]
+[gd_scene load_steps=3 format=3 uid="uid://dd006bdf5yjbn"]
 
 [ext_resource type="Script" uid="uid://c08jo05j6vida" path="res://scripts/menus/MenuVictoria.cs" id="1_8hmkv"]
+[ext_resource type="Texture2D" uid="uid://b1slyxrkigb1a" path="res://assets/fondos/FondoMenu.png" id="2_idjhl"]
 
 [node name="menu_victoria" type="CanvasLayer"]
 script = ExtResource("1_8hmkv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_idjhl")
+expand_mode = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
