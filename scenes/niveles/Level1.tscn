@@ -30,12 +30,12 @@ position = Vector2(289, 429)
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("1_1k7bg")
 LimiteIzquierdo = 350.0
-LimiteDerecho = 600.0
+LimiteDerecho = 650.0
 
 [node name="Battlefield" type="Node2D" parent="."]
 
 [node name="BaseJugador" parent="Battlefield" instance=ExtResource("2_0sb1u")]
-position = Vector2(-100, 600)
+position = Vector2(-150, 600)
 collision_layer = 16
 collision_mask = 992
 
@@ -48,7 +48,7 @@ EscenaPenetrador = ExtResource("5_dnnia")
 EscenaArtillero = ExtResource("6_jnqtx")
 
 [node name="BaseEnemigo" parent="Battlefield" instance=ExtResource("3_kbnhg")]
-position = Vector2(1050, 600)
+position = Vector2(1150, 600)
 collision_layer = 512
 collision_mask = 31
 

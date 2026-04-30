@@ -149,13 +149,59 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="EnergiaLabel" type="Label" parent="IU/IU/IU/Top/Energia/Energia/Energia"]
+[node name="Stats" type="PanelContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia"]
+self_modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Stats" type="MarginContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stats" type="PanelContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats"]
+layout_mode = 2
+
+[node name="Stats" type="MarginContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Stats" type="CenterContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats"]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats/Stats"]
+layout_mode = 2
+
+[node name="Separation" type="MarginContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats/Stats/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Energia" type="HBoxContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats/Stats/Stats"]
+layout_mode = 2
+
+[node name="EnergiaLabel" type="Label" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats/Stats/Stats/Energia"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_tyt0d")
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Separation2" type="MarginContainer" parent="IU/IU/IU/Top/Energia/Energia/Energia/Stats/Stats/Stats/Stats/Stats/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="Blank" type="HBoxContainer" parent="IU/IU/IU/Top/Energia"]
 layout_mode = 2
