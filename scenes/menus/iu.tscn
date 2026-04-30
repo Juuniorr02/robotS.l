@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cptkelbeah0d6"]
+[gd_scene load_steps=9 format=3 uid="uid://cptkelbeah0d6"]
 
 [ext_resource type="Script" uid="uid://bwjkwxm0tfcc5" path="res://scripts/menus/Iu.cs" id="1_w8q3a"]
 [ext_resource type="Texture2D" uid="uid://46j4o1gblmwp" path="res://assets/interfaz/ligero_icono.png" id="2_gnq4x"]
 [ext_resource type="Texture2D" uid="uid://dtbx0g211d5ag" path="res://assets/interfaz/penetrador_icono.png" id="3_c58rf"]
+[ext_resource type="Texture2D" uid="uid://cxvyr50kxmfpd" path="res://assets/interfaz/tanque_icono.png" id="4_5o1re"]
+[ext_resource type="Texture2D" uid="uid://csp6k14gb62x6" path="res://assets/interfaz/artillero_icono.png" id="5_o2ata"]
 
 [sub_resource type="Theme" id="Theme_1nckr"]
 
@@ -313,7 +315,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("3_c58rf")
+texture_normal = ExtResource("4_5o1re")
 
 [node name="Artillero" type="HBoxContainer" parent="IU/IU/IU/Bottom/Towers/Towers/Towers/Towers/Towers"]
 layout_mode = 2
@@ -349,7 +351,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("3_c58rf")
+texture_normal = ExtResource("5_o2ata")
 
 [node name="Right" type="VBoxContainer" parent="IU/IU/IU/Bottom"]
 layout_mode = 2

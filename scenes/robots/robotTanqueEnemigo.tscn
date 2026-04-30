@@ -1,8 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0b5ko1yvhe4c"]
+[gd_scene load_steps=17 format=3 uid="uid://d0b5ko1yvhe4c"]
 
 [ext_resource type="Script" uid="uid://cx5am1v3bio0r" path="res://scripts/robots/RobotTanque.cs" id="1_7xnys"]
+[ext_resource type="Texture2D" uid="uid://bfio7c5xhv41n" path="res://assets/enemigos/tanque/fotograma0000.png" id="2_xn6jj"]
+[ext_resource type="Texture2D" uid="uid://bx2183kid4mih" path="res://assets/enemigos/tanque/fotograma0001.png" id="3_s7mfa"]
+[ext_resource type="Texture2D" uid="uid://bd4cjaxlixcy6" path="res://assets/enemigos/tanque/fotograma0002.png" id="4_cwacf"]
+[ext_resource type="Texture2D" uid="uid://bgvedfvg8pli4" path="res://assets/enemigos/tanque/fotograma0003.png" id="5_261bx"]
+[ext_resource type="Texture2D" uid="uid://cf8ywlmh2xxmt" path="res://assets/enemigos/tanque/fotograma0004.png" id="6_ow12u"]
+[ext_resource type="Texture2D" uid="uid://dshvmffrx5jvj" path="res://assets/enemigos/tanque/fotograma0005.png" id="7_wcdhi"]
+[ext_resource type="Texture2D" uid="uid://v01f0cii6u8x" path="res://assets/enemigos/tanque/fotograma0006.png" id="8_ahb3c"]
+[ext_resource type="Texture2D" uid="uid://11hm5olckgc8" path="res://assets/enemigos/tanque/fotograma0007.png" id="9_j10sl"]
+[ext_resource type="Texture2D" uid="uid://df0mqqibyy6s3" path="res://assets/enemigos/tanque/fotograma0008.png" id="10_l2tbo"]
+[ext_resource type="Texture2D" uid="uid://bq5d0y0d0024s" path="res://assets/enemigos/tanque/fotograma0009.png" id="11_yeo2i"]
+[ext_resource type="Texture2D" uid="uid://b3fygdj5rtf2b" path="res://assets/enemigos/tanque/fotograma0010.png" id="12_q47fm"]
+[ext_resource type="Texture2D" uid="uid://bvktcku8qmxlt" path="res://assets/enemigos/tanque/fotograma0011.png" id="13_82468"]
+[ext_resource type="Texture2D" uid="uid://dsr83dwnojlrf" path="res://assets/enemigos/tanque/fotograma0012.png" id="14_hcoao"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xn6jj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s7mfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cwacf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_261bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ow12u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wcdhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ahb3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j10sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l2tbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yeo2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q47fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_82468")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hcoao")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
@@ -15,7 +73,10 @@ Visual = NodePath("AnimatedSprite2D")
 Nombre = "Robot Tanque"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.99999994, -11.999999)
+scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 128

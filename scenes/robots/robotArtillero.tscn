@@ -1,8 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://drtd3v6k7n4cg"]
+[gd_scene load_steps=23 format=3 uid="uid://drtd3v6k7n4cg"]
 
 [ext_resource type="Script" uid="uid://bgnhsn5g81myd" path="res://scripts/robots/RobotArtillero.cs" id="1_4t5sf"]
+[ext_resource type="Texture2D" uid="uid://105iw3ygfpo0" path="res://assets/enemigos/artilleo/fotograma0000.png" id="2_uf2lq"]
+[ext_resource type="Texture2D" uid="uid://c6ebxyy0b1553" path="res://assets/enemigos/artilleo/fotograma0001.png" id="3_a7yvy"]
+[ext_resource type="Texture2D" uid="uid://d3857g2to41xc" path="res://assets/enemigos/artilleo/fotograma0002.png" id="4_erkrt"]
+[ext_resource type="Texture2D" uid="uid://b0gyc2aklqh5g" path="res://assets/enemigos/artilleo/fotograma0003.png" id="5_r6fr8"]
+[ext_resource type="Texture2D" uid="uid://yu1or7u3r322" path="res://assets/enemigos/artilleo/fotograma0004.png" id="6_ktsw2"]
+[ext_resource type="Texture2D" uid="uid://ivv8ssa7mxi7" path="res://assets/enemigos/artilleo/fotograma0005.png" id="7_4gdj5"]
+[ext_resource type="Texture2D" uid="uid://dgl1jkht4dc4y" path="res://assets/enemigos/artilleo/fotograma0006.png" id="8_w3sle"]
+[ext_resource type="Texture2D" uid="uid://d0weupr7chnt4" path="res://assets/enemigos/artilleo/fotograma0007.png" id="9_d3ug4"]
+[ext_resource type="Texture2D" uid="uid://cnhn08ovh64h6" path="res://assets/enemigos/artilleo/fotograma0008.png" id="10_yvfkh"]
+[ext_resource type="Texture2D" uid="uid://f6gie7ye7ry4" path="res://assets/enemigos/artilleo/fotograma0009.png" id="11_jclcp"]
+[ext_resource type="Texture2D" uid="uid://c6kvtpmlln7hv" path="res://assets/enemigos/artilleo/fotograma0010.png" id="12_gn4xc"]
+[ext_resource type="Texture2D" uid="uid://bntfckaxi6i8y" path="res://assets/enemigos/artilleo/fotograma0011.png" id="13_dn4vk"]
+[ext_resource type="Texture2D" uid="uid://bdwm88oativbu" path="res://assets/enemigos/artilleo/fotograma0012.png" id="14_qsj8o"]
+[ext_resource type="Texture2D" uid="uid://ctu3rsfb4xyai" path="res://assets/enemigos/artilleo/fotograma0013.png" id="15_7m2ra"]
+[ext_resource type="Texture2D" uid="uid://c4rwiiimc5a17" path="res://assets/enemigos/artilleo/fotograma0014.png" id="16_elxg6"]
+[ext_resource type="Texture2D" uid="uid://btbdcjgpwyrqk" path="res://assets/enemigos/artilleo/fotograma0015.png" id="17_qn1uo"]
+[ext_resource type="Texture2D" uid="uid://b5pkj3poqphhl" path="res://assets/enemigos/artilleo/fotograma0000disparo.png" id="18_r6fr8"]
+[ext_resource type="Texture2D" uid="uid://lo7rjvegui6c" path="res://assets/enemigos/artilleo/fotograma0001disparo.png" id="19_ktsw2"]
+[ext_resource type="Texture2D" uid="uid://c50jd8v0cy6o0" path="res://assets/enemigos/artilleo/fotograma0002disparo.png" id="20_4gdj5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uf2lq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a7yvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_erkrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r6fr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ktsw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4gdj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_w3sle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d3ug4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yvfkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jclcp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gn4xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dn4vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qsj8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7m2ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_elxg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qn1uo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_r6fr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ktsw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4gdj5")
+}],
+"loop": true,
+"name": &"disparar",
+"speed": 10.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jrcbu"]
 
@@ -17,7 +104,13 @@ Nombre = "Robot Artillero"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 8
 visibility_layer = 992
+position = Vector2(3.9999998, -26.999998)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
+animation = &"disparar"
+autoplay = "default"
+frame = 1
+frame_progress = 0.22359127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 8
