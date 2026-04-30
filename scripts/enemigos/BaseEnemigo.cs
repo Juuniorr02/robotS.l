@@ -15,9 +15,9 @@ public partial class BaseEnemigo : Node2D
     private const int MaxNivelEconomia = 4;
 
     private readonly Dictionary<TipoTropa, int> _costes = new() {
-        { TipoTropa.Ligero, 50 },
+        { TipoTropa.Ligero, 100 },
         { TipoTropa.Tanque, 150 },
-        { TipoTropa.Penetrador, 100 },
+        { TipoTropa.Penetrador, 125 },
         { TipoTropa.Artillero, 200 }
     };
 
