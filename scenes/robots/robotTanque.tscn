@@ -68,12 +68,13 @@ animations = [{
 collision_layer = 4
 collision_mask = 992
 script = ExtResource("1_v6bhk")
-Tipo = 1
+IsFacingLeftByDefault = true
 Visual = NodePath("AnimatedSprite2D")
+Tipo = 1
 Nombre = "Robot Tanque"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.9999999, -8.999999)
+position = Vector2(1, -11)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 autoplay = "default"

@@ -97,15 +97,15 @@ animations = [{
 collision_layer = 256
 collision_mask = 31
 script = ExtResource("1_7brkp")
-Tipo = 3
 Visual = NodePath("AnimatedSprite2D")
+Tipo = 3
 Nombre = "Robot Artillero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 8
 visibility_layer = 992
-position = Vector2(3.9999998, -28.999998)
-scale = Vector2(0.1, 0.1)
+position = Vector2(3.9999998, -20.999998)
+scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 animation = &"disparar"
 autoplay = "default"
