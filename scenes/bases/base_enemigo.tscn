@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d34y7dxtqeeem" path="res://assets/fondos/TorreEnemigo.png" id="7_6w30m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vc0l"]
-size = Vector2(56, 51)
+size = Vector2(163, 150)
 
 [node name="BaseEnemigo" type="Area2D"]
 light_mask = 512
@@ -19,7 +19,7 @@ script = ExtResource("1_ygu5e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 512
 visibility_layer = 31
-position = Vector2(4, -2.5)
+position = Vector2(38.5, 22)
 shape = SubResource("RectangleShape2D_7vc0l")
 
 [node name="SpawnerEnemigo" type="Marker2D" parent="."]
@@ -34,6 +34,6 @@ EsSpawnerJugador = false
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-13.000001, -14.000001)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_6w30m")
 flip_h = true

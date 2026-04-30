@@ -104,8 +104,8 @@ Nombre = "Robot Artillero"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 8
 visibility_layer = 992
-position = Vector2(4, -21)
-scale = Vector2(0.08, 0.08)
+position = Vector2(9, -10)
+scale = Vector2(0.24, 0.24)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 animation = &"disparar"
 autoplay = "default"

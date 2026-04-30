@@ -74,8 +74,8 @@ Tipo = 1
 Nombre = "Robot Tanque"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.99999994, -11)
-scale = Vector2(0.05, 0.05)
+position = Vector2(-1, 19)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 autoplay = "default"
 

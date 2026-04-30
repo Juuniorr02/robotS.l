@@ -35,7 +35,7 @@ LimiteDerecho = 600.0
 [node name="Battlefield" type="Node2D" parent="."]
 
 [node name="BaseJugador" parent="Battlefield" instance=ExtResource("2_0sb1u")]
-position = Vector2(-20, 695)
+position = Vector2(-100, 600)
 collision_layer = 16
 collision_mask = 992
 
@@ -48,7 +48,7 @@ EscenaPenetrador = ExtResource("5_dnnia")
 EscenaArtillero = ExtResource("6_jnqtx")
 
 [node name="BaseEnemigo" parent="Battlefield" instance=ExtResource("3_kbnhg")]
-position = Vector2(1121, 695)
+position = Vector2(1050, 600)
 collision_layer = 512
 collision_mask = 31
 

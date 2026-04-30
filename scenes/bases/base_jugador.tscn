@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cwsrvqy511qw0" path="res://assets/fondos/TorreJugador.png" id="1_c4ti6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3g4b"]
-size = Vector2(57, 51)
+size = Vector2(166, 152)
 
 [node name="BaseJugador" type="Area2D"]
 light_mask = 16
@@ -12,11 +12,11 @@ visibility_layer = 992
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 16
 visibility_layer = 992
-position = Vector2(0.5, 0.5)
+position = Vector2(-34, 22)
 shape = SubResource("RectangleShape2D_l3g4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16.999998, -11.999999)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_c4ti6")
 flip_h = true

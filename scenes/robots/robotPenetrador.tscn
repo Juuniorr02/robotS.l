@@ -73,8 +73,9 @@ Danio = 45
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-5, -27)
-scale = Vector2(0.09, 0.09)
+scale = Vector2(0.27, 0.27)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
+autoplay = "default"
 frame_progress = 0.35206023
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
