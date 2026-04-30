@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=13 format=3 uid="uid://dtg567rrxi280"]
 
 [ext_resource type="Script" uid="uid://cjb2nb5olb80f" path="res://scripts/interfaz/Camara.cs" id="1_1k7bg"]
 [ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="1_o0cuc"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://csgh65lpkm8kb" path="res://scenes/robots/robotTanque.tscn" id="4_gu6vx"]
 [ext_resource type="PackedScene" uid="uid://dyerjirl457jh" path="res://scenes/robots/robotPenetrador.tscn" id="5_dnnia"]
 [ext_resource type="PackedScene" uid="uid://drtd3v6k7n4cg" path="res://scenes/robots/robotArtillero.tscn" id="6_jnqtx"]
+[ext_resource type="PackedScene" uid="uid://dd006bdf5yjbn" path="res://scenes/menus/menu_victoria.tscn" id="11_jnqtx"]
+[ext_resource type="PackedScene" uid="uid://b572wg4lmhjnr" path="res://scenes/menus/menu_derrota.tscn" id="12_xm1wk"]
 
 [node name="Main" type="Node2D"]
 
@@ -47,3 +49,7 @@ offset_bottom = 6.0
 _spawnerJugador = NodePath("../BaseJugador/SpawnerJugador")
 
 [node name="menu_pausa" parent="." instance=ExtResource("3_7vc0l")]
+
+[node name="menu_victoria" parent="." instance=ExtResource("11_jnqtx")]
+
+[node name="menu_derrota" parent="." instance=ExtResource("12_xm1wk")]

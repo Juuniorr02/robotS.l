@@ -5,11 +5,6 @@ public partial class MenuVictoria : CanvasLayer
     private Button btnSiguiente;
     private Button btnVolver;
     private Button btnReiniciar;
-	private int waveActual;
-
-	private int winningWave;
-
-	[Export]public int WinningWave;
 
     private bool isPaused = false;
 
@@ -51,8 +46,12 @@ public partial class MenuVictoria : CanvasLayer
     }
 
     public void UpdateMenuVictoria()
-	{
-	}
+    {
+        if (Recursos.Instance.VidaEnemigo <= 0)
+        {
+           Pausar(); 
+        }
+    }
 
     private void Pausar()
     {
