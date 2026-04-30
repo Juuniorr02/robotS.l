@@ -23,20 +23,22 @@ public partial class Robot : CharacterBody2D
 
     public override void _Ready()
     {
-        // Usamos GetNodeOrNull para evitar errores si olvidas ponerlo en una clase hija
         Detector = GetNode<RayCast2D>("RayCast2D");
         BarraVida = GetNodeOrNull<ProgressBar>("ProgressBar");
         
+        // --- CORRECCIÓN 1: SEGURIDAD DEL RAYCAST ---
+        Detector.Enabled = true;
+        Detector.CollideWithBodies = true;
+        Detector.CollideWithAreas = false;
+        Detector.AddException(this); // Esto obliga al rayo a ignorar al propio robot
+        // -------------------------------------------
+
         VidaActual = VidaMax;
         ConfigurarBarraVida();
 
-        // Configuración del RayCast
         float direccion = EsDelJugador ? 1.0f : -1.0f;
         Detector.TargetPosition = new Vector2(RangoAtaque * direccion, 0);
-        Detector.Enabled = true;
-        Detector.CollideWithBodies = true; // IMPORTANTE: Para detectar CharacterBody2D
-        Detector.CollideWithAreas = false;
-
+        
         if (Visual != null)
         {
             Vector2 nuevaEscala = Visual.Scale;
@@ -68,12 +70,18 @@ public partial class Robot : CharacterBody2D
         Vector2 velocity = Velocity;
         float direccion = EsDelJugador ? 1.0f : -1.0f;
 
+        // --- CORRECCIÓN 2: FORZAR ACTUALIZACIÓN ---
+        Detector.ForceRaycastUpdate(); 
+        // ------------------------------------------
+
         if (Detector.IsColliding())
         {
             var objeto = Detector.GetCollider();
             
-            // Verificamos si el objeto chocado hereda de Robot
-            if (objeto is Robot otroRobot && otroRobot.EsDelJugador != this.EsDelJugador)
+            // Usamos "as Robot" para ser más flexibles con la herencia
+            Robot otroRobot = objeto as Robot;
+
+            if (otroRobot != null && otroRobot.EsDelJugador != this.EsDelJugador)
             {
                 EstaAtacando = true;
                 velocity.X = 0;
