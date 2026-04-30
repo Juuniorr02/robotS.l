@@ -89,14 +89,13 @@ Nombre = "Robot Ligero"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.99999994, 8)
+position = Vector2(0, -4.9999995)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_jrcbu")
 frame_progress = 0.51505905
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 992
-position = Vector2(1, 13)
 shape = SubResource("CapsuleShape2D_jrcbu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
