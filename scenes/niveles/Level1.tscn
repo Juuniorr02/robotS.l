@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtg567rrxi280"]
+[gd_scene load_steps=14 format=3 uid="uid://dtg567rrxi280"]
 
 [ext_resource type="Script" uid="uid://cjb2nb5olb80f" path="res://scripts/interfaz/Camara.cs" id="1_1k7bg"]
 [ext_resource type="Script" uid="uid://o6xegc5q156r" path="res://scripts/enemigos/Spawner.cs" id="1_o0cuc"]
+[ext_resource type="Texture2D" uid="uid://bu7gq1ugsx5u1" path="res://assets/fondos/MapaRobots.png" id="1_xm1wk"]
 [ext_resource type="PackedScene" uid="uid://bopqvg7j27pma" path="res://scenes/bases/base_jugador.tscn" id="2_0sb1u"]
 [ext_resource type="PackedScene" uid="uid://cptkelbeah0d6" path="res://scenes/menus/iu.tscn" id="2_7vc0l"]
 [ext_resource type="PackedScene" uid="uid://sndo2fbpscsm" path="res://scenes/robots/robotLigero.tscn" id="3_1k7bg"]
@@ -16,6 +17,11 @@
 [node name="Main" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_xm1wk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(289, 429)
