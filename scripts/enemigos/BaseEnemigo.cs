@@ -6,17 +6,14 @@ using GameConstants;
 
 public partial class BaseEnemigo : Node2D
 {
-    // Referencia al script modular de Spawn
     private Spawner _spawner;
     private Node _unitsContainer;
 
-    // Economía interna de la IA (Espejo del jugador)
     private float _energiaIA = 0;
-    private float _energiaPorSegundoBase = 10f;
+    private float _energiaPorSegundoBase = 12f; // Un poco más rápida que antes
     private int _nivelEconomia = 0;
     private const int MaxNivelEconomia = 4;
 
-    // Diccionario de costes (Idénticos a los del jugador)
     private readonly Dictionary<TipoTropa, int> _costes = new() {
         { TipoTropa.Ligero, 50 },
         { TipoTropa.Tanque, 150 },
@@ -26,60 +23,78 @@ public partial class BaseEnemigo : Node2D
 
     public override void _Ready()
     {
-        // Buscamos el spawner que creamos antes (ajusta el nombre si es diferente)
         _spawner = GetNode<Spawner>("SpawnerEnemigo"); 
         _unitsContainer = GetParent().GetNode("UnitsContainer");
     }
 
     public override void _Process(double delta)
     {
-        // 1. Generar energía según el nivel de economía
-        float multiplicador = 1.0f + (_nivelEconomia * 0.5f);
+        float multiplicador = 1.0f + (_nivelEconomia * 0.6f); // Mejora económica más potente
         _energiaIA += _energiaPorSegundoBase * multiplicador * (float)delta;
 
-        // 2. Ejecutar la lógica de decisión
         PensarJugada();
     }
 
     private void PensarJugada()
     {
         Robot amenaza = DetectarAmenazaMasCercana();
+        float distanciaAmenaza = amenaza != null ? GlobalPosition.DistanceTo(amenaza.GlobalPosition) : 9999f;
 
-        if (amenaza != null)
+        // --- PRIORIDAD 1: DEFENSA CRÍTICA ---
+        // Si el enemigo está muy cerca (menos de 400px), gasta TODO en counters
+        if (amenaza != null && distanciaAmenaza < 400f)
         {
-            // --- CASO A: HAY ENEMIGOS ---
             TipoTropa respuesta = ObtenerCounterIdeal(amenaza.Tipo);
-            
             if (_energiaIA >= _costes[respuesta])
             {
-                _energiaIA -= _costes[respuesta];
-                _spawner.Spawn(respuesta);
+                DesplegarUnidad(respuesta);
             }
+            return; // Bloquea otras acciones para centrarse en defender
         }
-        else 
-        {
-            // --- CASO B: EL CAMPO ESTÁ LIBRE ---
-            int costeMejora = 100 + (_nivelEconomia * 100);
 
-            // Si puede mejorar la economía, lo hace primero
-            if (_nivelEconomia < MaxNivelEconomia && _energiaIA >= costeMejora)
-            {
-                _energiaIA -= costeMejora;
-                _nivelEconomia++;
-                GD.Print($"[IA] Economía mejorada a Nivel {_nivelEconomia}");
-            }
-            // Si ya está mejorado o tiene energía de sobra, presiona con tropas ligeras
-            else if (_energiaIA >= 250)
-            {
-                _energiaIA -= _costes[TipoTropa.Ligero];
-                _spawner.Spawn(TipoTropa.Ligero);
-            }
+        // --- PRIORIDAD 2: ECONOMÍA ---
+        int costeMejora = 100 + (_nivelEconomia * 150);
+        if (_nivelEconomia < MaxNivelEconomia && _energiaIA >= costeMejora && distanciaAmenaza > 600f)
+        {
+            _energiaIA -= costeMejora;
+            _nivelEconomia++;
+            return;
         }
+
+        // --- PRIORIDAD 3: ATAQUE PROACTIVO (PRESIÓN) ---
+        // Si la IA tiene energía acumulada, lanza ataques para no dejarte respirar
+        if (_energiaIA >= 250)
+        {
+            // Elige entre presionar con su counter o lanzar un ataque pesado
+            TipoTropa tropaAtaque = (amenaza != null) ? ObtenerCounterIdeal(amenaza.Tipo) : SeleccionarTropaAleatoria();
+            
+            DesplegarUnidad(tropaAtaque);
+
+            // "Doble Spawn": Si le sobra mucha energía, saca un Ligero de apoyo inmediatamente
+            if (_energiaIA > 100) DesplegarUnidad(TipoTropa.Ligero);
+        }
+    }
+
+    private void DesplegarUnidad(TipoTropa tipo)
+    {
+        if (_energiaIA >= _costes[tipo])
+        {
+            _energiaIA -= _costes[tipo];
+            _spawner.Spawn(tipo);
+        }
+    }
+
+    private TipoTropa SeleccionarTropaAleatoria()
+    {
+        // 40% Artillero (Presión fuerte), 60% Tanque o Penetrador
+        float r = GD.Randf();
+        if (r < 0.4f) return TipoTropa.Artillero;
+        if (r < 0.7f) return TipoTropa.Tanque;
+        return TipoTropa.Penetrador;
     }
 
     private Robot DetectarAmenazaMasCercana()
     {
-        // Busca robots en el contenedor que sean del jugador
         return _unitsContainer.GetChildren()
             .OfType<Robot>()
             .Where(r => r.EsDelJugador)
@@ -89,13 +104,12 @@ public partial class BaseEnemigo : Node2D
 
     private TipoTropa ObtenerCounterIdeal(TipoTropa tipoAmenaza)
     {
-        // Sistema de debilidades definido por ti
         return tipoAmenaza switch
         {
-            TipoTropa.Artillero => TipoTropa.Ligero,     // Ligero gana a Artillero
-            TipoTropa.Penetrador => TipoTropa.Artillero, // Artillero gana a Penetrador
-            TipoTropa.Tanque => TipoTropa.Penetrador,    // Penetrador gana a Tanque
-            TipoTropa.Ligero => TipoTropa.Tanque,        // Tanque gana a Ligero
+            TipoTropa.Artillero => TipoTropa.Ligero,
+            TipoTropa.Penetrador => TipoTropa.Artillero,
+            TipoTropa.Tanque => TipoTropa.Penetrador,
+            TipoTropa.Ligero => TipoTropa.Tanque,
             _ => TipoTropa.Ligero
         };
     }
