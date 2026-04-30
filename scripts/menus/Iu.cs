@@ -34,8 +34,8 @@ public partial class Iu : Control
         Artillero = GetNodeOrNull<TextureButton>("%Artillero");
 
         // --- CONEXIÓN DE BOTONES DE TROPAS ---
-        if (Ligero != null) Ligero.Pressed += () => OnTropaButtonPressed(TipoTropa.Ligero, 50);
-        if (Penetrador != null) Penetrador.Pressed += () => OnTropaButtonPressed(TipoTropa.Penetrador, 100);
+        if (Ligero != null) Ligero.Pressed += () => OnTropaButtonPressed(TipoTropa.Ligero, 100);
+        if (Penetrador != null) Penetrador.Pressed += () => OnTropaButtonPressed(TipoTropa.Penetrador, 125);
         if (Tanque != null) Tanque.Pressed += () => OnTropaButtonPressed(TipoTropa.Tanque, 150);
         if (Artillero != null) Artillero.Pressed += () => OnTropaButtonPressed(TipoTropa.Artillero, 200);
 
