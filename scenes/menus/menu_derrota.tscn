@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b572wg4lmhjnr"]
 
 [ext_resource type="Script" uid="uid://n5hopomx3lr8" path="res://scripts/menus/MenuDerrota.cs" id="1_wqmwx"]
-[ext_resource type="Texture2D" uid="uid://b1slyxrkigb1a" path="res://assets/fondos/FondoMenu.png" id="2_q0g7e"]
+[ext_resource type="Texture2D" uid="uid://6eo6alyojptk" path="res://assets/fondos/FondoMenuD.png" id="2_q0g7e"]
 
 [node name="menu_derrota" type="CanvasLayer"]
 script = ExtResource("1_wqmwx")
@@ -53,13 +53,3 @@ action_mode = 0
 text = "Salir del nivel"
 icon_alignment = 1
 expand_icon = true
-
-[node name="Overlay" type="ColorRect" parent="."]
-z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.29803923, 0.29803923, 0.29803923, 0.5882353)

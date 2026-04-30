@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd006bdf5yjbn"]
 
 [ext_resource type="Script" uid="uid://c08jo05j6vida" path="res://scripts/menus/MenuVictoria.cs" id="1_8hmkv"]
-[ext_resource type="Texture2D" uid="uid://b1slyxrkigb1a" path="res://assets/fondos/FondoMenu.png" id="2_idjhl"]
+[ext_resource type="Texture2D" uid="uid://sx58wr7eln5q" path="res://assets/fondos/FondoMenuV.png" id="2_idjhl"]
 
 [node name="menu_victoria" type="CanvasLayer"]
 script = ExtResource("1_8hmkv")
@@ -57,13 +57,3 @@ action_mode = 0
 text = "Salir del nivel"
 icon_alignment = 1
 expand_icon = true
-
-[node name="Overlay" type="ColorRect" parent="."]
-z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.29803923, 0.29803923, 0.29803923, 0.5882353)

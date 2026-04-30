@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.5", "C#", "Mobile")
 [autoload]
 
 Recursos="*res://scripts/interfaz/Recursos.cs"
+Musica="*res://scripts/interfaz/Musica.cs"
 
 [dotnet]
 
