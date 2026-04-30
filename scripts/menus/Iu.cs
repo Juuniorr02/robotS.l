@@ -86,7 +86,7 @@ public partial class Iu : Control
         while (true)
         {
             UpdateIU();
-            await ToSignal(GetTree().CreateTimer(1.0f, false), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.1f, false), "timeout");
         }
     }
 

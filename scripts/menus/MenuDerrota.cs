@@ -39,12 +39,13 @@ public partial class MenuDerrota : CanvasLayer
         b.MouseFilter = Control.MouseFilterEnum.Stop;
     }
 
-    public void UpdateMenuDerrota()
+    public async void UpdateMenuDerrota()
 	{
 		healthActual = Recursos.Instance.Health;
 
 		if (Recursos.Instance.Health <= 0)
 		{
+            await ToSignal(GetTree().CreateTimer(0.5f, false), "timeout");
 			Pausar();
 		}
 	}

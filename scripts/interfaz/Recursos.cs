@@ -23,12 +23,12 @@ public partial class Recursos : Node
 
 	public void SumarEnergia()
 	{
-		Energia += 10 + EnergiaMejorada;
+		Energia += 1 + EnergiaMejorada;
 	}
 
 	public void MejorarEnergia()
 	{
-		EnergiaMejorada += 10;
+		EnergiaMejorada += 1;
 	}
 
     public void DanarJugador(int cantidad)

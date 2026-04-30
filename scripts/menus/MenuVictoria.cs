@@ -45,16 +45,17 @@ public partial class MenuVictoria : CanvasLayer
         b.MouseFilter = Control.MouseFilterEnum.Stop;
     }
 
-    public void UpdateMenuVictoria()
+    public async void UpdateMenuVictoria()
     {
         if (Recursos.Instance.VidaEnemigo <= 0)
         {
+        await ToSignal(GetTree().CreateTimer(0.5f, false), "timeout");
            Pausar(); 
         }
     }
 
     private void Pausar()
-    {
+    {  
         isPaused = true;
         GetTree().Paused = true;
         Visible = true;
