@@ -14,6 +14,8 @@ public partial class Robot : CharacterBody2D
     [Export] public string Nombre;
     [Export] public int VidaMax = 100;
     public int VidaActual;
+    [Export] protected AnimatedSprite2D Anim;
+
     
     [Export] public float Velocidad = 50.0f;
     [Export] public int Danio = 10;
@@ -122,16 +124,21 @@ public partial class Robot : CharacterBody2D
         MoveAndSlide();
     }
 
-    private void EjecutarAtaque(Action dañoAccion, float delta)
+ protected virtual void EjecutarAtaque(Action dañoAccion, float delta)
+{
+    EstaAtacando = true;
+
+    // Aquí ponemos la animación por defecto para los robots cuerpo a cuerpo
+    if (Anim != null && Anim.Animation != "atacar") 
+        Anim.Play("atacar");
+
+    TemporizadorAtaque += delta;
+    if (TemporizadorAtaque >= 1.0f) 
     {
-        EstaAtacando = true;
-        TemporizadorAtaque += delta;
-        if (TemporizadorAtaque >= 1.0f) 
-        {
-            dañoAccion.Invoke();
-            TemporizadorAtaque = 0.0f;
-        }
+        dañoAccion.Invoke();
+        TemporizadorAtaque = 0.0f;
     }
+}
 
     private void Moverse(ref Vector2 velocity, float direccion)
     {
