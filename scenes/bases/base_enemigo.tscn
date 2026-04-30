@@ -6,11 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://d0b5ko1yvhe4c" path="res://scenes/robots/robotTanqueEnemigo.tscn" id="4_6w30m"]
 [ext_resource type="PackedScene" uid="uid://bxxbmj7ffpyws" path="res://scenes/robots/robotPenetradorEnemigo.tscn" id="5_8o64r"]
 [ext_resource type="PackedScene" uid="uid://df16c66st6a4d" path="res://scenes/robots/robotArtilleroEnemigo.tscn" id="6_p8xgh"]
+[ext_resource type="Texture2D" uid="uid://d34y7dxtqeeem" path="res://assets/fondos/TorreEnemigo.png" id="7_6w30m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vc0l"]
-size = Vector2(38, 39)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l3g4b"]
+size = Vector2(56, 51)
 
 [node name="BaseEnemigo" type="Area2D"]
 light_mask = 512
@@ -20,7 +19,7 @@ script = ExtResource("1_ygu5e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 512
 visibility_layer = 31
-position = Vector2(0, 0.5)
+position = Vector2(4, -2.5)
 shape = SubResource("RectangleShape2D_7vc0l")
 
 [node name="SpawnerEnemigo" type="Marker2D" parent="."]
@@ -33,5 +32,8 @@ EscenaArtillero = ExtResource("6_p8xgh")
 EsSpawnerJugador = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(40, 40)
-texture = SubResource("PlaceholderTexture2D_l3g4b")
+texture_filter = 1
+position = Vector2(-13.000001, -14.000001)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_6w30m")
+flip_h = true
